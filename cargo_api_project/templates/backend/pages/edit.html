@@ -1,0 +1,189 @@
+{% extends 'backend/base.html' %}
+{% block content %}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6"> 
+            <h1>Dashboard</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="/auth/admin-dashboard/">Home</a></li>
+              <li class="breadcrumb-item active"><a href="/auth/page-management/">page List</a></li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card card-danger">
+              <div class="card-header">
+                <h3 class="card-title">Edit Page</h3>
+            <form enctype="multipart/form-data" method="POST" class="uform">
+              </div>
+                <div class="card-body">
+                
+                {% csrf_token %}
+                  <input type="hidden" name="csrfmiddlewaretoken" value="">
+                  
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Page Title (en):</label>
+                    <input type="text" class="form-control" id="name" placeholder="Page Title Name (English).*" value="{{list.name}}">
+                    <span class="text-danger font-weight-bold" id="name-err"></span>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Page Title (ar):</label>
+                    <input type="text" class="form-control arabic-input" id="name_ar" placeholder="Page Title Name(Arabic).*" value="{{list.name_ar}}">
+                    <span class="text-danger font-weight-bold" id="name_ar-err"></span>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Description (en) :</label>
+                    <textarea  class="form-control" id="description" placeholder="Description (en).*">{{list.description}}</textarea>
+                    <span class="text-danger font-weight-bold" id="description-err"></span>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Description (ar) :</label>
+                    <textarea  class="form-control" id="description_ar" placeholder="Description (ar).*">{{list.description_ar}}</textarea>
+                    <span class="text-danger font-weight-bold" id="description_ar-err"></span>
+                  </div>
+                  
+                </div>
+                <div class="card-footer" id="save-btn-conatiner">
+                  <button type="button" class="btn btn-danger" id="save-btn-custom">Save</button>
+                </div>
+            </div>
+            </form>
+          </div>
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+   
+<script>
+    document.querySelectorAll('input[type="number"]').forEach(input=>{
+        input.oninput = () =>{
+            if(input.value.length > input.maxLength) input.value = input.value.slice(0,input.maxLength);
+        }
+    })
+</script>   
+<script>
+    $(document).ready(function() 
+    {
+        $('.dropify').dropify();
+    });
+
+    $(function () {
+        $('#description').summernote({
+          height: 200,
+        });
+        
+        $('#description_ar').summernote('justifyRight');
+      });
+</script>
+<script>
+    $(document).ready(function(){
+        $(document).on('click','#save-btn-custom',function(){
+          const reg_email = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
+          var name = $('#name').val();
+          var name_ar = $('#name_ar').val();
+          var description = $('#description').val();
+          var description_ar = $('#description_ar').val();
+
+          if(name=="")
+          {
+              $('#name').addClass('is-invalid');
+              $('#name-err').text('Enter Page Title name(en).*').css({"color":"red","font-weight":"bold"}).fadeIn(1000).delay(3000).fadeOut("slow");
+          }else{
+              $('#name').removeClass('is-invalid');
+              $('#name-err').text('');
+          }
+          
+          if(description=="")
+            {
+                $('#description').addClass('is-invalid');
+                $('#description-err').text('Enter Page Description.*').css({"color":"red","font-weight":"bold"}).fadeIn(1000).delay(3000).fadeOut("slow");
+            }else{
+                $('#description').removeClass('is-invalid');
+                $('#description-err').text('');
+            }
+           
+            
+            if(name!="" && description!="")
+            {
+                var fd = new FormData();
+                fd.append('name',name);
+                fd.append('name_ar',name_ar);
+                fd.append('description',description);
+                fd.append('description_ar',description_ar);
+                fd.append('id','{{list.id}}');
+                
+                
+                fd.append('csrfmiddlewaretoken',$('input[name="csrfmiddlewaretoken"]').val())
+                $.ajax({
+                    url: '/auth/update-page/',
+                    method: "POST",
+                    data: fd,
+                    contentType: false,
+                    processData: false,
+                    //dataType: "JSON",
+                    beforeSend: function(){
+                    $('#name').removeClass('is-invalid');
+                    $('#name-err').text('');
+                    
+                    $("#save-btn-conatiner").html('<div class="spinner-border text-danger text-right"></div>');
+                   },
+                    success: function(data) {
+                        console.log(data) 
+                      if ((data != null) && (data.msg == 'Updated')) 
+                      {
+                        sessionStorage.setItem('updated',true);
+                        window.location.href = '/auth/page-management/';
+                      } else if((data != null) && (data.msg == 'already exist')) {
+                        $('#name').addClass('is-invalid');
+                        $('#name-err').text('Page Title name already Exist.*');
+                      }
+                      
+                    },complete:function(data){
+                     $("#save-btn-conatiner").html('<button type="button" class="btn btn-danger" id="save-btn-custom">Save</button>');
+                   }
+                });
+            }
+
+        })
+    })
+</script>
+<script>
+    $(document).ready(function() 
+    {
+        $('.dropify').dropify();
+        $('.select2').select2();
+        $('.select2bs4').select2({
+        theme: 'bootstrap4'
+        });
+    });
+</script>
+<script>
+  $(document).ready(function() 
+  {
+      $('.my-colorpicker1').colorpicker()
+      //color picker with addon
+      $('.my-colorpicker2').colorpicker()
+
+      $('.my-colorpicker2').on('colorpickerChange', function(event) {
+      $('.my-colorpicker2 .fa-square').css('color', event.color.toString());
+      })
+      $('.dropify').dropify();
+  });
+</script>
+
+{% endblock content %}

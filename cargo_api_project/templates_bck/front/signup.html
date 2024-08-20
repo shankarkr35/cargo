@@ -1,0 +1,277 @@
+{% extends "front/base.html" %}
+{% block content %}
+{% load static %}
+
+  <section>
+    <div class="signup">
+        <div class="container">
+            <div class="signup_counst">
+                <div class="signup_counst_title">
+                    <div class="hedding_signp">
+                        <h1>Sign Up As Courier Company</h1>
+                    </div> 
+                    <div class="form_hedding">
+                        <div class="signp_form">
+                          {% csrf_token %}
+                          <input type="hidden" name="csrfmiddlewaretoken" value="">
+                            <div class="mb-3">
+                                <label class="form-label">Enter Full Name</label>
+                                <input type="email" class="form-control" id="name" placeholder="Name">
+                                <span class="font-weight-bold" style="color:white;" id="name-err"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Email address</label>
+                                <input type="email" class="form-control" id="email" placeholder="Enter Your Email">
+                                <span class="font-weight-bold" style="color:white;" id="email-err"></span>
+                            </div>
+                            <div class="mb-3">
+                              <label class="form-label">Country Code</label>
+                              <input type="text" class="form-control" id="country_code" placeholder="Enter Your Country Code" value="965" readonly>
+                              <span class="font-weight-bold" style="color:white;" id="country_code-err"></span>
+                          </div>
+                            <div class="mb-3">
+                                <label class="form-label">Phone Number</label>
+                                <input type="number" class="form-control" id="phone" placeholder="Enter Your Phone Number" maxlength="8">
+                                <span class="font-weight-bold" style="color:white;" id="phone-err"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Password</label>
+                                <input type="password" class="form-control" id="password" placeholder="Enter Your Password">
+                                <span class="font-weight-bold" style="color:white;" id="password-err"></span>
+                            </div>
+                            <div class="mb-3">
+                              <label class="form-label">Courier Certificate</label>
+                              <div class="white-box">
+                                <input type="file" id="file" name="file" class="dropify" data-default-file="" /> 
+                              </div>
+                              <span class="font-weight-bold" style="color:white;" id="file-err"></span>
+                            </div>
+                            <div class="mb-3">
+                              <label class="form-label">Courier File-1</label>
+                              <div class="white-box">
+                                <input type="file" id="file1" name="file1" class="dropify" data-default-file="" /> 
+                              </div>
+                              <span class="font-weight-bold" style="color:white;" id="file1-err"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Courier File-2</label>
+                                <div class="white-box">
+                                  <input type="file" id="file2" name="file2" class="dropify" data-default-file="" /> 
+                                </div>
+                                <span class="font-weight-bold" style="color:white;" id="file2-err"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Courier File-3</label>
+                                <div class="white-box">
+                                  <input type="file" id="file3" name="file3" class="dropify" data-default-file="" /> 
+                                </div>
+                                <span class="font-weight-bold" style="color:white;" id="file3-err"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Contract File</label>
+                                <div class="white-box">
+                                  <input type="file" id="file4" name="file4" class="dropify" data-default-file="" /> 
+                                </div>
+                                <span class="font-weight-bold" style="color:white;" id="file4-err"></span>
+                            </div>
+                            <div class="mb-3">
+                                <div class="Button_account">
+                                    <button type="button" id="sign-up-btn" class="btn btn-primary">
+                                      <div id="process-to-signup">Create Account</div>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <span><a href="{{MEDIA_URL}}{{list.contract_file.url}}" download>Download Contract File</a></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+  document.querySelectorAll('input[type="number"]').forEach(input=>{
+      input.oninput = () =>{
+          if(input.value.length > input.maxLength) input.value = input.value.slice(0,input.maxLength);
+      }
+  })
+</script>
+<script>
+  $(document).ready(function(){
+      $(document).on('click','#sign-up-btn',function(e){
+        const reg_email = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
+        const reg_password = /[!@#$%^&*()\-_=+{};:,<.>]/;
+          e.preventDefault();
+          var name = $('#name').val();
+          var email = $('#email').val();
+          var phone = $('#phone').val();
+          var country_code = $('#country_code').val();
+          var password = $('#password').val();
+          var files = $('#file')[0].files[0];
+          var files1 = $('#file1')[0].files[0];
+          var files2 = $('#file2')[0].files[0];
+          var files3 = $('#file3')[0].files[0];
+          var files4 = $('#file4')[0].files[0];
+
+          
+          if(name=="")
+          {
+              $('#name').addClass('is-invalid');
+              $('#name-err').text('Enter Full Name.*').css({"color":"white","font-weight":"bold"}).fadeIn(1000).delay(2000).fadeOut("slow");
+          }else{
+              $('#name').removeClass('is-invalid');
+              $('#name-err').text('');
+          }
+          
+          if(email=="")
+          {
+              $('#email').addClass('is-invalid');
+              $('#email-err').text('Enter User Email.*').css({"color":"white","font-weight":"bold"}).fadeIn(1000).delay(2000).fadeOut("slow");
+              
+          }else if(!reg_email.test(email)){
+            $('#email').addClass('is-invalid'); 
+            $('#email-err').text('Enter valid email address.*').css({"color":"white","font-weight":"bold"}).fadeIn(1000).delay(2000).fadeOut("slow");
+               
+          }else{
+              $('#email').removeClass('is-invalid');
+              $('#email-err').text('');
+          }
+          if(phone=="")
+          {
+              $('#phone').addClass('is-invalid');
+              $('#phone-err').text('Enter User Phone.*').css({"color":"white","font-weight":"bold"}).fadeIn(1000).delay(2000).fadeOut("slow");
+          }else if(phone.length!=8){
+              $('#phone').addClass('is-invalid');
+              $('#phone-err').text('Enter 8 Digit Phone.*').css({"color":"white","font-weight":"bold"}).fadeIn(1000).delay(2000).fadeOut("slow");
+          }else{
+              $('#phone').removeClass('is-invalid');
+              $('#phone-err').text('');
+          }
+          if(country_code=="")
+          {
+              $('#country_code').addClass('is-invalid');
+              $('#country_code-err').text('Enter Country Code.*').css({"color":"white","font-weight":"bold"}).fadeIn(1000).delay(2000).fadeOut("slow");
+          }else{
+              $('#country_code').removeClass('is-invalid');
+              $('#country_code-err').text('');
+          }
+          if(password=="")
+          {
+              $('#password').addClass('is-invalid');
+              $('#password-err').text('Enter Password.*').css({"color":"white","font-weight":"bold"}).fadeIn(1000).delay(2000).fadeOut("slow");
+          }else if(password.length < 8){
+              $('#password').addClass('is-invalid');
+              $('#password-err').text('Pasword should be greater than 8 digit.*').css({"color":"white","font-weight":"bold"}).fadeIn(1000).delay(2000).fadeOut("slow");    
+          }else if (!reg_password.test(password)) {
+              $('#password').addClass('is-invalid');
+              $('#password-err').text('Password should contain at least one special character.*').css({"color":"white","font-weight":"bold"}).fadeIn(1000).delay(2000).fadeOut("slow");
+          } else{
+              $('#password').removeClass('is-invalid');
+              $('#password-err').text('');
+          }
+          if(files==undefined)
+          {
+              $('#file').addClass('is-invalid');
+              $('#file-err').text('Please Upload Gov. Certificate.*').css({"color":"white","font-weight":"bold"}).fadeIn(1000).delay(2000).fadeOut("slow");
+          }else{
+              $('#file').removeClass('is-invalid');
+              $('#file-err').text('');
+          }
+          if(files1==undefined)
+          {
+              $('#file1').addClass('is-invalid');
+              $('#file1-err').text('Please Upload File-1.*').css({"color":"white","font-weight":"bold"}).fadeIn(1000).delay(2000).fadeOut("slow");
+          }else{
+              $('#file1').removeClass('is-invalid');
+              $('#file1-err').text('');
+          }
+          if(files2==undefined)
+          {
+              $('#file2').addClass('is-invalid');
+              $('#file2-err').text('Please Upload File-2.*').css({"color":"white","font-weight":"bold"}).fadeIn(1000).delay(2000).fadeOut("slow");
+          }else{
+              $('#file2').removeClass('is-invalid');
+              $('#file2-err').text('');
+          }
+          
+          if(files3==undefined)
+          {
+              $('#file3').addClass('is-invalid');
+              $('#file3-err').text('Please Upload File-3.*').css({"color":"white","font-weight":"bold"}).fadeIn(1000).delay(2000).fadeOut("slow");
+          }else{
+              $('#file3').removeClass('is-invalid');
+              $('#file3-err').text('');
+          }
+         
+          if(name!="" && files!=undefined && files1!=undefined && files1!=''&& files2!=undefined && files2!='' && files3!=undefined && files3!='' &&email!="" &&reg_email.test(email) && phone!="" && phone.length==8 && password!="" && reg_password.test(password) &&password.length>=8 && country_code!="")
+          {
+              var fd = new FormData();
+
+              fd.append('files',files);
+              fd.append('files1',files1);
+              fd.append('files2',files2);
+              fd.append('files3',files3);
+              fd.append('files4',files4);
+              fd.append('name',name);
+              fd.append('email',email);
+              fd.append('phone',phone);
+              fd.append('country_code',country_code);
+              fd.append('password',password);
+              fd.append('csrfmiddlewaretoken',$('input[name="csrfmiddlewaretoken"]').val())
+              $.ajax({
+                  url: '/signup-process',
+                  method: "POST",
+                  data: fd,
+                  contentType: false,
+                  processData: false,
+                  //dataType: "JSON",
+                  beforeSend: function(){
+                  $('#username').removeClass('is-invalid');
+                  $('#username-err').text('');
+                  
+                  //$("#process-to-signup").html('<div class="spinner-border text-white text-right"></div>');
+                 },
+                  success: function(data) {
+                    console.log(data)
+                    if ((data != null) && (data.msg == 'Signup done')) 
+                    {
+                      Swal.fire({
+                         
+                          icon: 'success',
+                          title: 'Registration Successfully Done.',
+                          showConfirmButton: false,
+                          timer: 7000,
+                          customClass: {
+                              popup: 'my-custom-popup',
+                              title: 'my-custom-title',
+                              icon: 'my-custom-icon'
+                          }
+                      });
+                      //window.location.href = '/signin';
+                      window.location.reload();
+                    } else if((data != null) && (data.msg == 'email already exist')) {
+                      $('#email').addClass('is-invalid');
+                      $('#email-err').text('Email already Exist.*').css({"color":"red","font-weight":"bold"}).fadeIn(1000).delay(2000).fadeOut("slow");
+                    }else if((data != null) && (data.msg == 'phone already exist')) {
+                        $('#phone').addClass('is-invalid');
+                        $('#phone-err').text('Phone already Exist.*').css({"color":"red","font-weight":"bold"}).fadeIn(1000).delay(2000).fadeOut("slow");
+                      }else if((data != null) && (data.msg == 'name already exist')) {
+                        $('#name').addClass('is-invalid');
+                        $('#name-err').text('Courier Name already Exist.*').css({"color":"red","font-weight":"bold"}).fadeIn(1000).delay(2000).fadeOut("slow");
+                      }else if((data != null) && (data.msg == 'Signup not done')) {
+                      $('#name').addClass('is-invalid');
+                      $('#name-err').text('Registration Not Done.*').css({"color":"red","font-weight":"bold"}).fadeIn(1000).delay(2000).fadeOut("slow");
+                    }
+
+                  },complete:function(data){
+                   $("#save-btn-conatiner").html('<button type="button" class="btn btn-danger" id="save-btn-custom">Save</button>');
+                 }
+              });
+          }
+
+      })
+  })
+</script>
+
+
+{% endblock content %}

@@ -1,0 +1,2958 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&amp;display=swap');
+*{
+
+    padding:0;
+
+    margin:0;
+
+}
+body{
+    font-family: 'Montserrat';
+    dir
+}
+header {
+
+    height: 120px;
+
+}
+.up_doun_button span {
+    font-size: 20px !important;
+    display: none;
+}
+.up_doun_button span {
+    font-size: 20px !important;
+}
+div#navbarSupportedContent {
+    flex-grow: 0 !important;
+}
+.Top_header_count ul li a {
+    color: white;
+}
+button.navbar-toggler.up_doun_button {
+    width: 0;
+    height: 0;
+    padding: 0;
+    display: contents;
+}
+li {
+
+    list-style: none;
+    
+    display: inline-block;
+
+    margin-right: 20px;
+
+    font-size: 16px;
+
+    font-weight: 400;
+
+}
+li.Sign_up_to_our_newsletter {
+
+    border-right: 2px solid white;
+    padding-right: 8px;
+    margin-right: 0;
+    font-size: 14px;
+
+}
+.Sign_up_to_our_newsletter a{
+    color: white;
+}
+.Sign_up_to_our_newsletter a:hover {
+    color: white;
+}
+
+ul {
+
+    display: inline-block;
+
+}
+.Top_header_count {
+    justify-content: space-between;
+    display: flex;
+    background: #33A2B0;
+    color: white;
+    height: 50px;
+    padding: 10px;
+}
+
+.top_header span {
+
+    font-size: 14px;
+
+}
+
+.header_logo {
+
+    position: relative;
+
+    z-index: 1;
+
+    display: inline-block;
+
+
+}
+
+header a {
+
+    color: #000000;
+
+    text-decoration: none;
+
+}
+header a:hover {
+    color: #D94B63;
+}
+header button {
+
+    background: linear-gradient(96.54deg, #D94B63 0%, #EA9546 100%);
+
+    box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.12);
+
+    border-radius: 8px;
+
+    padding: 8px 30px;
+
+    border: none;
+
+    color: white;
+
+}
+
+header button a{
+
+    color:white;
+
+}
+header button a:hover{
+    color:white;
+}
+nav.navbar.navbar-expand-lg {
+    padding-top: 4px;
+}
+.navbar_header_link li {
+    color: black;
+    align-items: center;
+    display: flex;
+}
+
+.navbar_top_hom {
+
+    display: inherit;
+
+    width: 100%;
+
+    height: 70px;
+
+    justify-content: space-around;
+
+}
+
+.navbar_header_link {
+
+    align-items: center;
+
+    display: grid;
+
+}
+
+.header_logo img {
+
+    width: 100%;
+    border-radius: 8px;
+    background: white;
+
+}
+
+.home_slider_sports_Previous {
+
+    position: absolute;
+
+    bottom: -22%;
+
+    width: 100%;
+
+}
+.event_slider_slide img {
+    height: 466px;
+}
+.home_slider_sports_Previous_img_images img{
+    opacity: 0.9;
+    width: 100%;
+    height:228px;
+
+}
+.home_slider_sports_Previous_count {
+    position: relative;
+    bottom: 150px;
+    display: inline-block;
+    left: 14%;
+    color: white;
+}
+
+.home_slider_sports_Previous_count h1 {
+
+    font-size: 42px;
+
+}
+.home_slider_sports {
+    position: relative;
+}
+.home_slider_sports_Previous_count p {
+    font-weight: 300;
+    font-size: 24px;
+
+}
+
+.Trending_Events {
+
+    margin-top: 40px;
+
+}
+.sport_slide_home_images img {
+    height: 550px;
+    object-fit: cover;
+}
+
+.event_titel{
+
+    margin-bottom: 0px;
+
+}
+
+.Trending_Events .item {
+
+    background: #FFFFFF;
+
+    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.08);
+
+    border-radius: 8px;
+    height: auto;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+
+}
+
+
+.Kuwait_Relay p {
+
+    letter-spacing: -0.02em;
+
+    color: #000000;
+
+    font-size: 14px;
+
+}
+.Members_Raiding.event_align {
+    position: absolute;
+    display: flex;
+    color: white;
+    background-color: #000000;
+    /* padding: 3px; */
+    border-radius: 4px;
+    opacity: 0.6;
+    margin: 10px;
+    justify-content: center;
+    align-items: baseline;
+    padding: 0 6px;
+}
+.event_align img{
+    width: 14px;
+    height: 14px;
+}
+.Trending_Events_img img {
+    height: 150px;
+    border-radius: 8px;
+    object-fit: fill;
+}
+.Kuwait_Relay_celender .loction_on {
+    width: 16px !important;
+    height: 16px;
+    margin: 5px;
+    margin-left: 0;
+    margin-right: 8px;
+}
+.Trending_Events .Kuwait_Relay {
+    padding: 10px;
+    /*display: flex;*/
+    /*justify-content: space-between;*/
+    /*height: 28vh;*/
+    /*height:181px;*/
+    /*flex-direction: column;*/
+}
+.Kuwait_Relay_join_button {
+    margin-top: auto;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+img.trending_w_1 {
+    background: linear-gradient(110.66deg, #D94B63 1.24%, #EA9546 100%);
+    border-radius: 8px;
+}
+.register-type-confirm{
+
+    background: linear-gradient(99.09deg, #33A2B0 0%, #c4e0e5 100%);
+
+}
+.Kuwait_Relay_join_button button {
+
+    background: linear-gradient(99.09deg, #33A2B0 0%, #c4e0e5 100%);
+
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.08);
+
+    border-radius: 30px;
+
+    padding: 3px 25px;
+
+    border: none;
+
+    color:white;
+
+}
+.Kuwait_Relay_join_button button a{
+    color:white;
+    text-decoration: none;
+}
+.event_trending h2 {
+
+    display: inline-block;
+
+    font-weight: 700;
+
+    font-size: 30px;
+
+}
+
+.event_trending_Show_All {
+
+    display: inline-block;
+
+    float: right;
+
+}
+
+.event_trending_Show_All button {
+
+    border: none;
+
+    background: none;
+
+}
+
+.Trending_Events_count .owl-carousel .owl-dots.disabled, .owl-carousel .owl-nav.disabled {
+    display: block !important;
+}
+.Trending_Events_count .owl-dots {
+    display: none!important;
+}
+.Trending_Events_count .owl-nav button span {
+    background: linear-gradient(99.09deg, #D94B63 0%, #EA9546 100%);
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: block;
+    font-size: 40px;
+    color: #fff;
+    line-height: 0.6;
+}
+.Trending_Events_count .owl-nav button.owl-next {
+    position: absolute;
+    right: -20px;
+    top: -50px;
+}
+.Trending_Events_count .owl-nav button.owl-prev {
+    position: absolute;
+    left: -20px;
+    top: -50px;
+}
+.Trending_Events button.owl-dot.active span {
+    display: none !important;
+}
+.Trending_Events_count .owl-nav {
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    width: 100%;
+}
+.Trending_Events_count .owl-nav button:hover {
+    background: transparent!important;
+}
+.event_trending_Show_All button a{
+
+    text-decoration:none;
+
+}
+.event_Nights li:first-child {
+    display: flex;
+    justify-content: space-between;
+}
+.event_Nights .Members {
+    margin-top: 20px;
+}
+.Vivamus_nunc_img {
+
+    display: inline-block;
+
+}
+
+.Vivamus_nunc_img img{
+    height: 465.37px;
+    width: 100%;
+
+}
+
+.Vivamus_nunc_count {
+
+    display: inline-block;
+
+    margin-top: 30px;
+
+}
+
+.Vivamus_nunc {
+
+    margin-top: 50px;
+
+}
+
+.pulvinar_porta ul {
+
+    display: inline-block;
+
+    margin: 0;
+
+    padding: 0;
+
+}
+
+.pulvinar_porta img {
+
+    margin-right: 10px;
+
+    width: 20px;
+
+    height: 20px;
+
+}
+
+.Vivamus_nunc_count h2 {
+
+    color: #000000;
+
+    font-weight: 700;
+
+    font-size: 30px;
+
+    margin-bottom: 30px;
+
+    margin-top: 30px;
+
+}
+.Vivamus_nunc_count p {
+    font-size: 14px;
+}
+.Vivamus_nunc_count li {
+
+    line-height: 39px;
+    font-size: 14px;
+}
+
+.Vivamus_nunc_count button {
+
+    border: none;
+
+    background: #33A2B0;
+
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+    border-radius: 30px;
+
+    color: white;
+
+    padding: 10px 40px;
+
+    margin-top: 30px;
+
+    font-weight: 600;
+
+}
+
+.Vivamus_nunc_count button a{
+
+    text-decoration: none;
+
+    color:white;
+
+}
+
+.Al_Nasar_Nights_box_img {
+
+    display: inline-block;
+
+}
+
+.Al_Nasar_Nights_box_countent li {
+
+    display:block;
+
+}
+
+.Al_Nasar_Nights_box_countent {
+
+    display: inline-block;
+    width: 100%;
+
+}
+
+h2 {
+
+    font-size: 18px;
+
+    line-height: 14px;
+
+    letter-spacing: -0.02em;
+
+    color: #000000;
+
+}
+
+li.ahammed_sarhan i.fa.fa-calendar {
+
+    color: #EA9546;
+
+    margin-right: 5px;
+
+}
+
+.Al_Nasar_Nights_box {
+
+    display: flex;
+
+    background: #FFFFFF;
+
+    padding: 10px;
+    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.08);
+    border-radius: 8px;
+
+    margin-top: 40px;
+
+}
+.Al_Nasar_Nights_box_img img {
+    height: 124px;
+    width:111px;
+}
+.Al_Nasar_Nights_box_img  video {
+    width: 110px;
+    height: 115px;
+}
+.event_Nights .Al_Nasar_Nights_box_img img {
+    width: 225px;
+    height: 169px;
+    border-radius: 8px;
+}
+.Al_Nasar_Nights.event_Nights .Al_Nasar_Nights_box {
+    padding: 0;
+}
+.footer_count_Quick_Links li a {
+    color: white;
+    text-decoration: none;
+}
+ .Members_Raiding {
+    /*margin-left: 30px;*/
+    display: inline-block;
+    display: flex;
+    float: right;
+
+}
+
+.Members_Raiding img {
+    margin-right: 5px;
+    width: 14px;
+    height: 14px;
+
+}
+.Al_Nasar_Nights_box_countent ul {
+    display: inline-block;
+    width: 100%;
+   
+}
+/*.Al_Nasar_Nights_box_countent ul li span {*/
+/*    font-size: 14px;*/
+/*    line-height: 16px;*/
+/*    display: -webkit-box;*/
+/*    -webkit-line-clamp: 1;*/
+/*    -webkit-box-orient: vertical;*/
+/*    overflow: hidden;*/
+/*}*/
+.Al_Nasar_Nights_box_countent ul li img {
+
+    margin-right: 5px;
+    height: 15px;
+    width: 15px;
+
+}
+
+.Al_Nasar_Nights_box_countent button {
+
+    background: linear-gradient(99.09deg, #D94B63 0%, #EA9546 100%);
+
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.08);
+
+    border-radius: 30px;
+
+    padding: 0px 25px;
+
+    border: none;
+
+    color:white;
+
+}
+
+.Al_Nasar_Nights_box_countent button a{
+    color:white;
+    text-decoration: none;
+}
+
+.Al_Nasar_Nights_box_countent h2 {
+
+    margin-left: 30px;
+
+    line-height: 18px;
+    font-size: 18px;
+
+}
+.Latest_activity_count {
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+.Sponsors_img img {
+    width: 100%;
+    height: 116px;
+}
+.home_Sponsors_headding {
+    text-align: center;
+    width: 100%;
+}
+.Sponsors_img {
+    display: inline-block;
+    margin: 14px;
+    width: 30.33%;
+}
+
+.Sponsors_count {
+
+    text-align: center;
+
+    padding-bottom: 20px;
+
+    margin-top: 50px;
+
+}
+
+
+
+/* ========footer========== */
+
+
+
+.footer {
+
+    background: #33A2B0;
+
+}
+
+.footer_count_img {
+
+    display: inline-block;
+
+}
+
+.footer_count_Quick_Links {
+
+    display: inline-block;
+
+    color: white;
+
+}
+
+.footer_count_Quick_Links h2{
+
+    color: white;
+    font-size:20px;
+    margin-bottom: 30px;
+
+}
+.footer_count_img img {
+    width: 130px;
+    height: 38.57px;
+}
+.footer_count_Quick_Links ul {
+
+    padding: 0;
+
+}
+
+.footer_count_Quick_Links li {
+
+    display: block;
+    font-size: 14px;
+    line-height: 30px;
+
+}
+.footer_Follow_Us i {
+    border: 1px solid white;
+    border-radius: 50%;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.footer_count {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    flex-wrap: wrap;
+
+    padding: 30px 0px;
+
+}
+
+.footer_count_button button {
+
+    background: #E6C11E;
+
+    border-radius: 0px 4px 4px 0px;
+
+    color: white;
+
+    border: none;
+
+    padding: 10px;
+
+}
+.city_kuwait_rading_p {
+    display: flex;
+    justify-content: space-between;
+}
+.footer_count_button input[type="text"] {
+
+    padding: 10px;
+
+    border: none;
+
+}
+
+.footer_count_button {
+
+    background: #FFFFFF;
+
+    border-radius: 4px;
+
+    margin-bottom: 20px;
+
+}
+
+.footer_Follow_Us {
+
+    display: inline-block;
+
+    margin-right: 10px;
+
+}
+
+
+.footer_Follow_Us a{
+    text-decoration: none;
+    color: white;
+}
+
+
+.footer-copyright {
+
+    background: #000000;
+
+    padding: 15px;
+
+    color: #FFFFFF;
+
+    text-align: center;
+
+    font-size: 14px;
+
+}
+
+.footer-copyright p{
+
+    margin: 0;
+
+}
+
+.Kuwait_Relay_celender {
+    display: flex;
+
+}
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: black !important;
+}
+.Kuwait_Relay h4 {
+    font-size: 18px;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    color: #000;
+    font-weight: 5000;
+    height: 21.59px;
+    text-transform: capitalize;
+}
+.Trending_Events .Kuwait_Relay .Kuwait_Relay_celender p {
+    height: auto;
+    -webkit-line-clamp: 1;
+}
+.Kuwait_Relay_celender p {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    color: #000;
+    height: 42px;
+    margin-bottom: 5px;
+    text-transform: capitalize;
+}
+.Kuwait_Relay_celender i.fa.fa-calendar {
+
+    color: #EA9546;
+
+    margin-right: 5px;
+
+}
+
+.home_map {
+
+    margin-top: 60px;
+
+}
+
+.home_map p {
+
+    text-align: center;
+
+    margin-bottom: 20px;
+
+    font-size: 24px;
+
+}
+.footer_count_img_logo img {
+    width: 215px;
+}
+
+
+.footer_count_Quick_Links.footer_medical_adices {
+
+    margin-top: 5%;
+
+}
+
+
+
+/* ==========about========== */
+
+.about_banner {
+
+    background: linear-gradient(90.9deg, #33A2B0 0%, #c4e0e5 100%);
+
+    height: 150px;
+
+    width: 100%;
+
+    text-align: center;
+
+    color: white;
+
+}
+
+.about_banner .about_banner_count h1 {
+
+    line-height: 150px;
+
+    font-weight: 700;
+
+    font-size: 36px;
+
+}
+
+.about_Who_We_Are_count {
+
+    text-align: center;
+
+}
+
+.about_Who_We_Are_count h1 {
+
+    font-weight: 700;
+
+    font-size: 30px;
+
+}
+
+.about_Who_We_Are_count p {
+
+    width: 80%;
+
+    text-align: center;
+
+    margin: auto;
+
+    font-size: 18px;
+
+    line-height: 30px;
+
+    margin-top: 20px;
+
+}
+
+.about_Who_We_Are {
+
+    margin-top: 30px;
+
+    margin-bottom: 30px;
+
+}
+
+
+
+.about_Our_Mission_count_box {
+
+    background: #33A2B0;
+
+    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.15);
+
+    border-radius: 8px;
+
+    color: white;
+
+    padding: 20px;
+
+}
+
+.about_Our_Mission_count {
+
+    margin-bottom: 40px;
+
+    margin-top: 40px;
+
+}
+
+.about_Our_Mission_count_box .layra h2 {
+
+    color: white;
+    font-weight: 600;
+    line-height: 25px;
+
+    margin-bottom: 20px;
+    display: inline-block;
+
+}
+.layra img {
+    display: inline-block;
+    background: white;
+    padding: 10px;
+    border-radius: 50px;
+    margin-right: 15px;
+}
+.layra .layra_img{
+    padding: 15px 13px;
+}
+.about_Our_Mission_count_box p {
+
+    line-height: 24px;
+    font-size: 14px;
+}
+
+.about_Our_Mission_count_box.Our_Vision_box {
+
+    background: #E6C11E;
+
+}
+
+.home_Sponsors_images.about_sponsors {
+
+    margin-bottom: 50px;
+
+}
+
+.Leaders_Message_img {
+
+    width: 60px;
+
+    height: 60px;
+
+    margin: auto;
+
+    border-radius: 50px;
+
+    border: 2px solid #33A2B0;
+
+}
+
+.Leaders_Message_img img{
+
+    padding: 2px;
+
+    border-radius: 50px;
+
+}
+
+.about_Leaders_Message_count {
+
+    text-align: center;
+
+    margin: auto;
+
+}
+
+.Leaders_Message_peregrap{
+
+    text-align: center;
+    font-size: 14px;
+    margin: auto;
+
+}
+
+.Leaders_Message_peregrap p {
+
+    width: 608px;
+
+    margin: auto;
+
+    padding-top: 40px;
+
+    padding-bottom: 30px;
+
+}
+
+.Leaders_consectetur {
+
+    background: #FFFFFF;
+
+    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.08);
+
+    border-radius: 10px;
+
+    width: 780px;
+
+    height: 288px;
+
+    margin: auto;
+
+    margin-top: 30px;
+
+    margin-bottom: 30px;
+
+}
+
+.Leaders_Message_Ahammed_Sarhan h2 {
+
+    color: #33A2B0;
+
+    font-weight: 700;
+
+    font-size: 14px;
+
+    line-height: 24px;
+
+}
+
+.about_Leaders_Message_hedding h2 {
+
+    font-size: 30px;
+
+    color: #000000;
+
+    font-weight: 700;
+
+    margin-top: 50px;
+
+}
+
+.Leaders_Message_Ahammed_Sarhan span {
+
+    font-size: 14px;
+
+    line-height: 24px;
+
+    color: #000000;
+
+}
+
+
+
+/* =============event================= */
+
+.background_liniar {
+    width: 100%;
+    height: 400px;
+    position: absolute;
+    top: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%);
+    border-radius: 8px;
+}
+.carousel-caption {
+
+    right: 0 !important; 
+
+    text-align: left !important;
+
+}
+
+.event_banner {
+
+    text-align: center;
+
+    margin-top: 30px;
+
+    margin-bottom: 40px;
+
+}
+.event_banner_input {
+
+    display: inline-block;
+
+    width: 450px;
+
+    border-radius: 30px;
+
+}
+
+.event_banner_input img {
+    float: left;
+    position: relative;
+    top: 33px;
+    left: 14px;
+    opacity: 0.7;
+}
+.event_slider .carousel-caption {
+    left: 50px!important;
+}
+.event_banner input[type="text"] {
+
+    width: 450px;
+
+    height: 44px;
+
+    background: #FFFFFF;
+
+    border: 1px solid #DDDDDD;
+
+    border-radius: 30px;
+
+    padding: 0px 40px;
+
+}
+
+.event_banner_img {
+
+    display: inline-block;
+
+    border-radius: 50px;
+
+    background: linear-gradient(135deg, #D94B63 0%, #EA9546 100%);
+
+}
+.benner_join_button  button {
+    color: white;
+    background: linear-gradient(99.09deg, #D94B63 0%, #EA9546 100%);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.08);
+    border-radius: 30px;
+    border: none;
+    padding: 3px 25px;
+}
+.benner_join_button  button a{
+    color: white;
+    text-decoration: none;
+}
+.event_Nights li {
+    display: block;
+    line-height: 30px;
+    margin-top: 10px;
+}
+.event_banner_img img {
+
+     padding: 15px;
+
+}
+.event_Nights ul{
+    padding-left: 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /*height: 17vh;*/
+
+}
+li.Mebar_event {
+    /*display: flex;*/
+}
+.event_slider img.d-block.w-100 {
+
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%);
+
+    border-radius: 8px;
+
+}
+.meb_enwnt {
+    display: flex;
+}
+
+
+.Marathon_img {
+
+    width: 60px;
+
+    height: 60px;
+
+    margin: auto;
+
+}
+
+.event_Activities {
+
+    margin-top: 70px;
+
+    margin-bottom: 70px;
+
+}
+
+.event_Activities_title h1 {
+
+    font-weight: 700;
+
+    font-size: 30px;
+
+    line-height: 30px;
+
+    margin-bottom: 30px;
+
+}
+
+.Marathon {
+
+    background: #FFFFFF;
+
+    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.06);
+
+    border-radius: 8px;
+
+    padding: 15px;
+
+}
+
+.Marathon h2 {
+
+    color: #000000;
+
+    text-align: center;
+
+    font-size: 18px;
+    margin-top: 20px;
+    font-weight: 700;
+
+}
+
+.Marathon span {
+
+    font-weight: 400;
+
+    font-size: 14px;
+
+    margin: auto;
+
+    text-align: center;
+
+    line-height: 16px;
+
+    display: flex;
+
+    justify-content: center;
+
+    line-height: 20px;
+
+    margin-bottom: 10px;
+
+}
+
+.Marathon p {
+
+    margin-bottom: 0 !important;
+
+    font-weight: 400;
+
+    font-size: 14px;
+
+}
+
+.Marathon .Members_Raiding {
+
+    display: flex;
+
+    position: relative;
+
+    bottom: 60px;
+
+}
+.event_Nights h2 {
+    margin-left: 0px;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+div#reserve-btn-container {
+    display: inline-block;
+}
+
+div#support-container {
+    display: inline-block;
+}
+.event_slider .carousel-indicators [data-bs-target] {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.event_slider .carousel-indicators .active {
+    background-color: #E6C11E;
+}
+
+/* ================================================================================= */
+
+.Destop_banner_image img {
+    height: 450px !important;
+    width: 100%;
+    object-fit: revert;
+}
+.like_image a {
+    text-decoration: none;
+}
+.Marathon_Home h1 {
+    font-size: 24px;
+    font-weight: 700;
+}
+.Marathon_Home h5 {
+    font-weight: 700;
+    font-size: 18px;
+}
+.Marathon_Home  p {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+}
+.Marathon_Home button {
+    background: linear-gradient(96.34deg, #D94B63 0%, #EA9546 100%);
+    box-shadow: 0px 6px 4px rgba(0, 0, 0, 0.08);
+    border-radius: 30px;
+    color: white;
+    border: none;
+    padding: 5px 20px;
+    margin-right: 30px;
+}
+.Marathon_Home button.support {
+    background: #33A2B0;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.08);
+    border-radius: 30px;
+}
+.Marathon_Home_count_button {
+    margin-bottom: 40px;
+}
+.Marathon_Home ul {
+    padding: 0;
+    
+}
+.Marathon_Home ul  img {
+    padding-right: 10px;
+}
+.Marathon_Home ul li {
+    display: flex;
+    font-size: 14px;
+    line-height: 24px;
+}
+.Marathon_scen img {
+    background: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 8px;
+    width: 168px;
+    height: 168px;
+    margin-bottom: 20px;
+}
+.like_image {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.like_image  .shaer_like_img {
+    background: linear-gradient(99.09deg, #E6C11E 0%, #EA9546 100%);
+    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.08);
+    border-radius: 30px;
+    padding: 5px 10px;
+    line-height: 16px;
+}
+.Destop_banner_scen_Kuwai {
+    margin-top: 50px;
+}
+.shaer_like_img span {
+    font-weight: 400;
+    font-size: 12px;
+    color: white;
+    margin-left: 5px;
+}
+
+/* ===============reservtion================= */
+
+.Reservation .Reser_box_img img {
+    background: #FFFFFF;
+    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.08);
+    border-radius: 8px;
+    height: 95px;
+    width: 84px;
+    background: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 8px;
+}
+.Reservation li {
+    display: block;
+}
+.Reservation {
+    margin-bottom: 50px;
+}
+.Reservation_countent_Nasar_Nights_box{
+        display: flex;
+        background: #FFFFFF;
+        padding: 10px;
+        width: 100%;
+        justify-content: space-between;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        border-radius: 8px;
+        margin-top: 40px;
+
+}
+.Reservation_countent_Nasar_Nights_box h4 {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+}
+
+
+/* ====================add================== */
+
+.add-event_count {
+    margin-top: 50px;
+}
+.add_input.add_previes {
+    width: 10%;
+}
+.activity_add{
+    display: inline-block;
+}
+.activity_add button a{
+    text-decoration: none;
+    color: white;
+}
+.add_input button {
+    background: #33A2B0;
+    border-radius: 8px;
+    color: white;
+    padding: 5px 20px;
+    border: none;
+}
+.add_input button a{
+    text-decoration: none;
+    color: white;
+}
+.add-event_count lable {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+.presiv_add_time {
+    margin-top: 20px;
+}
+
+.add_Time  input[type="radio"] {
+    margin-right: 10px;
+}
+input[type="checkbox"] {
+    margin-right: 10px;
+}
+.place_activity {
+    margin-top: 20px;
+}
+
+.place_activity  lable {
+    display: block;
+}
+.radio_activitei input[type="radio"] {
+    margin-right: 10px;
+}
+.add-event_count select {
+    background: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 8px;
+    padding: 5px 10px;
+    width: 100px;
+}
+.participants {
+    margin-top: 20px;
+}
+.participants input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.gender_group {
+    display: inline-block;
+    margin-right: 20px;
+    margin-top: 20px;
+}
+.add_special .gender_group {
+    width: 100%;
+    margin-top: 20px;
+}
+.gender_group.Site_sports {
+    width: 83.4% !important;
+}
+.Publish_button button {
+    background: linear-gradient(90.91deg, #E6C11E 0%, #EA9546 100%);
+    box-shadow: 0px 6px 4px rgba(0, 0, 0, 0.08);
+    border-radius: 30px;
+    border: none;
+    color: white;
+    width: 31%;
+    padding: 10px;
+    margin-bottom: 30px;
+}
+.Publish_button button a{
+    text-decoration: none;
+    color: white;
+}
+.add_special .enter_description{
+    height: 90px !important;
+    padding: 10px;
+}
+.place_activity .place_activity_count_input lable{
+    display: block;
+    line-height: 40px;
+}
+.place_activity .place_activity_count_input input.file_logo{
+    padding: 8px;
+    font-size: 14px;
+    color: black;
+}
+input.file_upload {
+    border: none;
+    background: none;
+    font-size: 14px;
+    color: black;
+    padding-left: 15px;
+    outline: none;
+}
+.place_activity_count_input {
+    margin-bottom: 30px;
+}
+.upload_choose_file {
+    display: inline-block;
+    border: 1px solid #DDDDDD;
+    border-radius: 8px;
+    padding: 5px;
+    width: 350px;
+}
+
+
+/* ====================add================== */
+
+.add-event_count {
+    margin-top: 50px;
+}
+.add_input button {
+    background: #33A2B0;
+    border-radius: 8px;
+    color: white;
+    border: none;
+    height: 44px;
+    width: 100%;
+}
+.add_input button a{
+    text-decoration: none;
+    color: white;
+}
+.add-event_count lable {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+.presiv_add_time {
+    margin-top: 20px;
+}
+.add-event_count input {
+    background: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+    width: 100%;
+    height: 35px;
+}
+.add_event input{
+    accent-color: #33A2B0;
+    padding:10px;
+}
+.add_Time  input[type="radio"] {
+    margin-right: 10px;
+}
+img.loction_on {
+    margin-right: 3px;
+}
+.add-event_count select {
+    background: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 8px;
+    padding: 5px 5px;
+    font-size: 14px;
+}
+.participants {
+    margin-top: 20px;
+}
+.participants input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.gender_group {
+    display: inline-block;
+    margin-top: 20px;
+}
+.add_special .gender_group {
+    width: 100%;
+    margin-top: 20px;
+}
+.add_special .gender_group input{
+    width: 100%;
+    background: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 5px;
+    height: 35px;
+    padding:10px;
+}
+.place_activity .place_activity_count_input lable{
+    display: block;
+    line-height: 40px;
+}
+.place_activity_count_input {
+    margin-bottom: 30px;
+}
+
+
+/* =================my-event====================== */
+.Marathon_count h2 {
+    text-align: center;
+    margin-left: 40px;
+}
+.carousel_slider_img img {
+    height: 400px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+.Find_Events_buttons ul li:last-child {
+    position: relative;
+    right: 70px;
+}
+.my_event_box_countent li{
+    display: block;
+}
+.my_event_count {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+.city_kuwait_rading {
+    display: flex;
+}
+.my_event_box_img img {
+    width: 100%;
+    height: 220px;
+    border-radius: 8px 8px 0px 0px;
+}
+.my_event_box {
+    background: #FFFFFF;
+    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.08);
+    border-radius: 8px;
+}
+.my_event_box_countent ul {
+    padding: 0;
+}
+.My_event_scen img {
+    width: 74.67px;
+    height: 74.67px;
+    background: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 8px;
+}
+.event_my_img {
+    margin-top: 35px;
+    float: right;
+}
+.Members.Marathon_my {
+    display: flex;
+}
+.my_sport_Marathon {
+    margin: auto;
+    width: 100%;
+    justify-content: space-between;
+}
+.my_sport_Marathon span {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+}
+.my_sport_Marathon h2 {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+}
+.my_sport_Marathon p {
+    font-size: 10px;
+    line-height: 12px;
+    margin-bottom: 10px;
+}
+.my_event_box_countent {
+    margin: 20px;
+}
+.posted_pen {
+    display: flex;
+}
+.posted_pen p{
+    display: inline-block;
+    margin-right: 5px;
+}
+.posted_pen img{
+    width: 9px;
+    height: 9px;
+}
+
+/* ===================calender=================== */
+
+.Find_Events_count {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    text-align: center;
+}
+.Find_Events_buttons {
+    text-align: center;
+    margin: auto;
+    justify-content: center;
+    display: flex;
+    margin-left: 7%;
+}
+.calender_latest .col-sm-6 {
+    margin: auto;
+}
+.Find_Events_buttons  .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    border: 1px solid #D94B63 !important;
+    background: #D94B63 !important;
+    border-radius: 30px !IMPORTANT;
+    color: white;
+    padding: 10px;
+    width: 250px;
+}
+.Find_Events_buttons .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: white !important;
+}
+a.find_events {
+    color: white;
+    font-weight: 700;
+    font-size: 16px;
+}
+.Find_Events_buttons .nav-pills .nav-link {
+    background: 0 0;
+    border: 0;
+    border: 1px solid #D94B63;
+    border-radius: 30px;
+    padding: 10px;
+    width: 250px;
+    font-size: 16px;
+    color: #D94B63;
+    background: none;
+    font-weight: 700;
+}
+
+.Find_Events_buttons .nav-pills .nav-link a{
+    font-size: 16px;
+    /*color: white;*/
+    text-decoration: none;
+}
+button.Reserved_Events_b {
+    border: 1px solid #D94B63;
+    background: #D94B63;
+    border-radius: 30px;
+    color: white;
+    padding: 10px;
+    width: 30%;
+    position: relative;
+    left: 70px;
+}
+button.Reserved_Events_b a{
+    text-decoration: none;
+    color: white;
+}
+button.Reserved_Events {
+    border: 1px solid #D94B63;
+    border-radius: 30px;
+    padding: 10px;
+    width: 30%;
+    font-size: 16px;
+    color: #D94B63;
+    background: none;
+}
+button.Reserved_Events a{
+    color: #D94B63;
+    text-decoration: none;
+}
+.calender_days_img {
+    background: linear-gradient(135deg, #E6C11E 0%, #EA9546 100%);
+    display: inline-block;
+    border-radius: 50px;
+    padding: 5px 10px;
+}
+.calender_days_count.nav-pills .nav-link.active{
+    color: black !important;
+    background-color: white !important;
+    border: 1px solid #E6C11E;
+}
+.calender_days_count {
+    display: inline-block;
+    /*margin: 10px;*/
+    background: white;
+    border: 1px solid #E6C11E;
+    border-radius: 30px;
+}
+.calender_days_count .nav-link.active {
+    background: linear-gradient(100.84deg, #E6C11E 0%, #EA9546 100%) !important;
+   color: white !important;
+    border-radius: 50px;
+}
+.calender_days_count.active button{
+    border-radius: 30px;
+    color:black;
+}
+.calender_days_count button {
+    background: #FFFFFF;
+    border: 1px solid #E6C11E;
+    border-radius: 30px;
+    padding: 5px 10px;
+    color: black;
+    width: 80px;
+    font-size: 12px;
+    height:35px;
+}
+.calender_days {
+    margin-top: 40px;
+    justify-content: center;
+    display: grid;
+}
+.Al_Nasar_Nights_box_img.calender_boxses img{
+    width: 150px;
+    height: 150px;
+    object-fit: none;
+}
+.calender_latest {
+    padding-bottom: 40px;
+}
+
+
+
+/* ================map-1====================== */
+.map_sport{
+    margin-bottom: 50px;
+}
+
+
+/* =====================madical-advices============================ */
+
+.Medical_Advices_count img {
+    width: 95% !important;
+    height: 350px;
+    border-radius: 10px;
+    margin: auto;
+    object-fit: cover;
+}
+.Medical_Advices_banner {
+    width: 70%;
+    margin: auto;
+    margin-top: 40px;
+}
+.Medical_Advices_count video {
+    width: 95%;
+    height: 350px;
+    margin-bottom: 30px;
+}
+.medical_advins_service {
+    width: 70%;
+    margin: auto;
+}
+.medical_advins_service p {
+    text-align: justify;
+    background: #EBF5F7;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 8px;
+}
+.medical_passage  span {
+    background: linear-gradient(135deg, #E6C11E 0%, #EA9546 100%);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.08);
+    color: white;
+    padding: 6px 15px;
+    height: 40px;
+    border-radius: 50px;
+    margin-right: 10px;
+}
+.medical_passage {
+    display: flex;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.anything {
+    width: 27px !important;
+    height: 27px;
+    margin-top: 3px;
+}
+.medical-icon {
+    text-align: end;
+    margin-bottom: 40px;
+    margin-right: 40px;
+    display: none;
+}
+.about_Leaders_Message {
+    padding-bottom: 50px;
+}
+h4.ask_me {
+    text-align: center;
+    margin: auto;
+}
+
+/* ==================login================= */
+
+.login_informetion {
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+.soprt_login {
+    width: 50%;
+    margin: auto;
+}
+.soprt_login lable {
+    display: block;
+    font-size: 14px;
+    line-height: 24px;
+}
+.soprt_login input{
+    background: #FFFFFF;
+    border: 1px solid #EA9546;
+    border-radius: 8px;
+    width: 100%;
+    padding: 10px;
+}
+.login_input_count select {
+    background: #FFFFFF;
+    border: 1px solid #EA9546;
+    border-radius: 8px;
+    width: 100%;
+    padding: 10px;
+}
+.login_input_count {
+    margin-top: 20px;
+}
+button.login_button {
+    background: linear-gradient(90.91deg, #D94B63 0%, #EA9546 100%);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.08);
+    border-radius: 8px;
+    width: 100%;
+    color: white;
+    border: none;
+    padding: 10px;
+    font-weight: 700;
+    font-size: 16px;
+}
+button.login_button a{
+    text-decoration: none;
+    color: white;
+}
+button.register {
+    background: #33A2B0;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.08);
+    border-radius: 8px;
+    color: white;
+    width: 100%;
+    border: none;
+    padding: 10px;
+    font-weight: 700;
+    font-size: 16px;
+}
+button.register a{
+    text-decoration: none;
+    color: white;
+}
+button.guest_user {
+    background: #FFFFFF;
+    border: 1px solid #E6C11E;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.08);
+    border-radius: 8px;
+    width: 100%;
+    padding: 10px;
+    color: #E6C11E;
+    font-weight: 700;
+    font-size: 16px;
+}
+button.guest_user  a{
+    text-decoration: none;
+    color: #E6C11E;
+}
+.login_input_count.forget_password {
+    width: 100%;
+}
+.forget_password span {
+    float: right;
+    margin-bottom: 20px;
+}
+.login_image {
+    text-align: center;
+}
+.popup_login_form lable {
+    font-weight: 700;
+    font-size: 16px;
+}
+.modal-header.type_for {
+    border: none;
+}
+.popup_login_form {
+    padding: 20px;
+}
+.registra_for {
+    line-height: 30px;
+}
+.registra_for  input{
+    margin-right: 5px;
+}
+
+
+/* =====================Individual================== */
+
+.Individual input {
+    background: #FFFFFF;
+    border: 1px solid #DDDDDD;
+}
+.Individual  select {
+    width:100%;
+    padding: 10px;
+    background: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 8px;
+}
+.agree_conditions input[type="checkbox"] {
+    width: 15px;
+    margin-right: 10px;
+}
+.agree_conditions {
+    display: flex;
+}
+.login_image h3 {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 34px;
+    margin-top: 10px;
+}
+
+
+/* ===============thankyo============ */
+
+.thanks_to_sport {
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+.thanks_to_sport {
+    margin-top: 100px;
+    margin-bottom: 100px;
+    justify-content: center;
+    display: flex;
+}
+.smail_count h1 {
+    color: #33A2B0;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 44px;
+    text-align: center;
+}
+.smail_images {
+    text-align: center;
+}
+.smail_images  img {
+    width: 200px;
+    height: 200px;
+}
+.smail_count {
+    padding: 0px 10px;
+}
+.smail_count p{
+    color: #000000;
+    font-size: 14px;
+    line-height: 24px;
+}
+.go_to_home {
+    text-align: center;
+}
+.go_to_home button {
+    background: linear-gradient(93.83deg, #D94B63 0%, #EA9546 99.29%);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.08);
+    border-radius: 30px;
+    color: white;
+    font-weight: 700;
+    border: none;
+    padding: 8px 20px;
+}
+.go_to_home button a{
+    text-decoration: none;
+    color:white;
+}
+
+/* =================profil================= */
+
+.profil_consectetur {
+    background: #FFFFFF;
+    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.08);
+    border-radius: 10px;
+    width: 780px;
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.profile_count_img img.profile_img {
+    width: 80px !important;
+    height: 80px;
+    border-radius: 50px;
+    margin: auto;
+    padding: 2px;
+    border: 2px solid #33A2B0;
+}
+img.Sarhan_image {
+    width: 34px !important;
+    height: 34px;
+    text-align: center;
+    margin: auto;
+}
+img.Sarhan_image_scen {
+    width: 56px !important;
+    height: 56px;
+    background: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 8px;
+}
+.profile_Ahammed_Sarhan_images {
+    display: inline-block;
+    width: 100px;
+}
+.profile_Ahammed_Sarhan_images h4 {
+    font-size: 12px;
+    line-height: 25px;
+}
+.profile_count_img {
+    text-align: center;
+    padding-top: 30px;
+}
+.profile_Ahammed_Sarhan {
+    margin-top: 20px;
+}
+.profile_count_img h1 {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+    margin-top: 10px;
+}
+.Achievements_profile_count {
+    border-radius: 8px;
+    text-align: center;
+    background: #d2eded;
+    width: 130px;
+}
+.Achievements_profile_count  h1 {
+    font-weight: 700;
+    font-size: 16px;
+}
+.Achievements_profile_count  img {
+    width: 35px;
+    height: 35px;
+    margin-top: 15px;
+    padding: 5px;
+    border-radius: 50px;
+    background: linear-gradient(135deg, #E6C11E 0%, #EA9546 100%);
+}
+.Achievements_profile_count p {
+    font-size: 12px;
+    padding-bottom: 15px;
+}
+.Achievements_profile h1 {
+    font-weight: 700;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+.chek_sport {
+    display: flex;
+}
+.achiev {
+    font-weight: 700;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+.achieved{
+    width: 35%;
+}
+.Achievements_profile_activity .row {
+    justify-content: space-between;
+    display: flex;
+    flex-wrap: wrap;
+}
+.like_this {
+    display: inline-block;
+    width: 103px;
+    height: 82.4px;
+    margin-right: 30px;
+    margin-bottom: 10px;
+    background: #FFFFFF;
+    text-align: center;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.06);
+    border-radius: 8px;
+}
+.like_this img {
+    width: 35px;
+    height: 35px;
+    margin-top: 15px;
+}
+.Achievements_profile {
+    margin-bottom: 30px;
+}
+.Achievements_profile_activity {
+    margin-bottom: 100px;
+        width: 70%;
+    margin: auto
+}
+img.gold_game_coin {
+    width: 14px !important;
+    height: 14px;
+    margin-top: 5px;
+    margin-right: 5px;
+}
+.gold_coin_game {
+    display: flex;
+    float: left;
+}
+.Ellipse-doctoer{
+    display: inline-block;
+}
+.pen_coin {
+    display: inline-block;
+    float: right;
+}
+.ahammedsarhan p{
+    padding-top: 10px;
+}
+.profile_peregrap{
+    padding: 10px;
+}
+
+/* ==================profil-2=================== */
+.informetion table {
+    width: 100%;
+}
+
+.meadia_image {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.meadia_image h1 {
+    font-weight: 700;
+    font-size: 18px;
+}
+.meadia_image  img {
+    width: 106px;
+    height: 53.24px;
+}
+.shoshal_meadia_icon .profil_Follow_Us i.fa {
+    border-radius: 50%;
+    padding: 5px 8px;
+    margin-right: 10px;
+    color: white;
+    background: #D94B63;
+}
+.profil_Follow_Us {
+    display: inline-block;
+}
+
+/* ==================map-popup================= */
+
+.Map_registra_for {
+    border-bottom: 1px solid #dddddd;
+    padding-bottom: 10px;
+    padding-top: 15px;
+}
+.popup_submit_button button {
+    background: linear-gradient(90.75deg, #D94B63 0%, #EA9546 100%);
+    box-shadow: 0px 6px 4px rgba(0, 0, 0, 0.08);
+    border-radius: 30px;
+    width: 90%;
+    border: none;
+    color: white;
+    padding: 8px;
+    display: flex;
+    margin: auto;
+    justify-content: center;
+}
+.popup_submit_button {
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+.popup_submit_button button  a{
+    text-decoration: none;
+    color: white;
+}
+.modal-content.map_direction {
+    width: 390px;
+    margin: auto;
+    margin-top: 35%;
+}
+button.btn-close.close_map_button {
+    border: 2px solid#E6C11E;
+    border-radius: 50%;
+    float: right;
+    margin-right: 5px;
+    margin-top: 5px;
+    display:none;
+}
+.Map_registra_for input {
+    margin-left: 20px;
+    margin-right: 5px;
+    accent-color: #33A2B0;
+}
+
+
+
+/* ===============progress============= */
+.progresbar_step {
+    background: #FFFFFF;
+    border: 1px solid #E6C11E;
+    border-radius: 8px;
+    width: 40px;
+    z-index: 1;
+    position: relative;
+    /*margin-bottom: 100vh;*/
+    opacity: 1;
+        margin-top: 40px;
+    text-align: center;
+}
+.col-sm-6.progresbar_step:last-child {
+    display: none;
+}
+.progresbar .progresbar_step:last-child {
+    /*margin-bottom: 100px;*/
+}
+.progresbar_step p{
+    margin: 0;
+    font-size: 14px;
+}
+
+
+.progresbar {
+    position: relative;
+    /* width: 50px; */
+    /* display: inline-block; */
+    right: 139%;
+    height: 100%;
+}
+.progresbar::before {
+    content: "";
+    position: absolute;
+    /*top: 50%;*/
+       
+    transform: translateY(0);
+    height: 100%;
+    width: 1px;
+    left: 20px;
+    background-color: #E6C11E;
+}
+.progresbar:not(:last-child):before{
+    
+    
+}
+.progresbar::before:last-child{
+    height: 100;
+}
+/*=====================edit-profil================*/
+
+.edit_profile_informetion {
+    display: inline-block;
+    width: 45%;
+    margin-bottom: 0 !important;
+    margin: 15px;
+}
+.profile_Ahammed_Sarhan {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+.edit_profile_count h1 {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 34px;
+    margin-top: 20px;
+}
+.edit_profile_informetion lable {
+    display: block;
+    margin-bottom: 10px;
+
+}
+.edit_profile_informetion input {
+    width: 100%;
+    background: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 8px;
+    padding: 8px;
+   
+}
+.edit_profile_checkbox {
+    margin-top: 20px;
+    margin-left: 15px;
+}
+.Favourite_sport_cheked {
+    display: inline-block;
+    margin-right: 20px;
+}
+.edit_profile_informetion.size {
+    width: 21%;
+}
+.edit_profile_informetion select {
+    background: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 8px;
+    width: 100%;
+    padding: 8px;
+}
+.edit_profile_checkbox span {
+    display: block;
+    margin-bottom: 10px;
+}
+.Update_edit_profil{
+    margin-top: 20px;
+    margin-bottom: 50px;
+    
+}
+.adit_sport_choose {
+    display: flex;
+}
+.Update_edit_profil button {
+    background: linear-gradient(90.91deg, #D94B63 0.01%, #EA9546 100%);
+    box-shadow: 0px 6px 4px rgba(0, 0, 0, 0.08);
+    border-radius: 8px;
+    border: none;
+    padding: 5px 20px;
+}
+.edit_profile_count {
+    margin-bottom: 50px;
+}
+.Update_edit_profil button a{
+    text-decoration: none;
+    color:white;
+}
+.Favourite_sport_cheked input {
+    accent-color: #33A2B0;
+}
+
+
+.dropify-wrapper {
+    border: none !important;
+}
+.dropify-wrapper .dropify-preview .dropify-render img {
+    border-radius: 50%;
+}
+.dropify-wrapper {
+    border-radius: 10px;
+}
+
+
+
+/*=================================about=================*/
+
+
+.Leaders__about_Message .owl-carousel .owl-dots.disabled, .owl-carousel .owl-nav.disabled {
+    display: block !important;
+}
+
+.Leaders__about_Message .owl-dots {
+    display: none!important;
+}
+.Leaders__about_Message .owl-nav button span {
+    background: linear-gradient(99.09deg, #D94B63 0%, #EA9546 100%);
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: block;
+    font-size: 40px;
+    color: #fff;
+    line-height: 0.6;
+}
+.Leaders__about_Message .owl-nav button.owl-next {
+    position: absolute;
+    right: 130px;
+    top: -50px;
+}
+.Leaders__about_Message .owl-nav button.owl-prev {
+    position: absolute;
+    left: 130px;
+    top: -50px;
+}
+.Leaders__about_Message button.owl-dot.active span {
+    display: none !important;
+}
+.Leaders__about_Message .owl-nav {
+    position: absolute;
+    top: 50%;
+    /*transform: translate(50%, -50%);*/
+    margin: auto;
+    width: 100%;
+}
+.Leaders__about_Message .owl-nav button:hover {
+    background: transparent!important;
+}
+
+/*=============medical============*/
+
+.Medical_Advices_slide .owl-nav {
+    display: none;
+}
+.Medical_Advices_slide .owl-theme .owl-dots .owl-dot span {
+    border: 1px solid #D94B63;
+     background: white ;
+}
+button.owl-dot.active span {
+   
+    background: #D94B63 !important;
+}
+.Medical_Advices_slide .owl-dots {
+    position: absolute;
+    /* top: 60%; */
+    text-align: center;
+    margin: auto;
+    left: 45%;
+    bottom: 5px;
+}
+/*.Medical_Advices_slide .owl-dots {*/
+/*    display: none;*/
+/*}*/
+/*.Medical_Advices_slide .owl-nav {*/
+/*    display: none;*/
+/*}*/
+
+/*=========popup===========*/
+
+.modal-body.about_the_count p {
+    text-align: center;
+    margin: 0;
+}
+.the_support:nth-child(2) button {
+    background: #33A2B0;
+    color:white;
+    border-radius: 30px;
+    border: none;
+}
+.the_support:nth-child(2) button a{
+    color:white;
+}
+.the_support {
+    display: inline-block;
+    margin: 0 10px;
+}
+.modal-content.about_the_are .modal-header {
+    border: none;
+    display: none;
+}
+.modal-content.about_the_are {
+    width: 70%;
+    margin: auto;
+    margin-top: 40%;
+}
+.sure_you {
+    text-align: center;
+    padding-bottom: 20px;
+}
+.the_support button {
+    border-radius: 30px;
+    padding: 2px 15px;
+    width: 60px;
+    background: #FFFFFF;
+    border: 1px solid #DDDDDD;
+}
+.the_support button a{
+    text-decoration: none;
+    color: black;
+}
+
+
+.event_slect_date lable {
+    display: block;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 40px;
+}
+.event_slect_date {
+    display: inline-block;
+}
+.event_slect_date select {
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    border: none;
+    padding: 5px;
+    background: white;
+    width: 150px;
+    border-radius: 2px;
+}
+.event_slect_date input {
+    box-shadow: rgb(60 64 67 / 30%) 0px 1px 2px 0px, rgb(60 64 67 / 15%) 0px 1px 3px 1px;
+    border: none;
+    padding: 5px;
+    background: white;
+    border-radius: 2px;
+    width: 150px;
+}
+.event_popup_form {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+}
+.modal-content.event_content  {
+    margin-top: 40%;
+}
+
+
+
+
+.home_slider_sports button.carousel-control-next {
+    background:black;
+    height: 35px;
+    width: 35px;
+    align-items: center;
+    position: absolute;
+    top: 40%;
+    right: 5%;
+    opacity: 0.6;
+    border-radius: 50%;
+}
+.home_slider_sports button.carousel-control-prev {
+    background: black;
+    opacity: 0.6;
+    height: 35px;
+    width: 35px;
+    align-items: center;
+    position: absolute;
+    top: 40%;
+    left: 5%;
+    border-radius: 50%;
+}
+.home_slider_sports .carousel-control-next-icon, .carousel-control-prev-icon {
+    background-size: 100% 79%;
+}
+.home_slider_sports .carousel-control-next-icon, .carousel-control-prev-icon {
+    background-size: 100% 79% !important;
+}
+.Find_Events_buttons ul {
+    display: flex;
+    flex-wrap: inherit;
+}
+.event_my_img i {
+    color: white;
+    font-size: 18px;
+    margin-left: 8px;
+    background: red;
+    box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.08);
+    padding: 5px 7px;
+    border-radius: 50%;
+    
+}
+.delet {
+    display: flex;
+}
+
+
+
+
+
+
+
+
+    
+    .add_Time_my_event {
+    width: 43.2%;
+    display: inline-block;
+}
+.add-event_count select {
+    width: 145px;
+}
+.presiv_add_time .add_Time:last-child {
+    margin-right: 0;
+}
+.add_input {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 10px;
+}
+.add_input.add_previes {
+    width: 100%;
+}
+.add_Time.many_how {
+    width: 100%;
+    margin-right: 0 !important;
+}
+.radio_activitei {
+    display: inline-block;
+    margin-right: 20px;
+    font-size: 14px;
+    line-height: 35px;
+}
+.gender_group.Site_sports {
+    width: 100%;
+}
+.activity_add button {
+    width: 100%;
+    margin-top: 17px;
+    height: 35px;
+    background: #33A2B0;
+    border-radius: 8px;
+    color: white;
+    border: none;
+}
+.Publish_button button {
+    background: linear-gradient(90.91deg, #E6C11E 0%, #EA9546 100%);
+    box-shadow: 0px 6px 4px rgba(0, 0, 0, 0.08);
+    border-radius: 30px;
+    border: none;
+    color: white;
+      width: 350px;
+    padding: 10px;
+    margin-top: 22px;
+    margin-bottom: 30px;
+}
+.add_input button {
+    background: #33A2B0;
+    border-radius: 8px;
+    color: white;
+    border: none;
+    height: 44px;
+    width: 100%;
+    
+    margin-bottom: 0;
+    margin-top: 42px;
+}
+.Publish_button {
+    margin-top: 52px;
+    margin-left: 30px;
+}
+.radio_activitei input {
+    width: 17px;
+    height: 17px;
+}
+.place_activity_count_input {
+    display: inline-block;
+    margin-right: 30px;
+}
+.Publish_button {
+    display: inline-block;
+}
+.form-group label {
+    margin-bottom: 8px;
+}
+.form-group {
+    margin-bottom: 20px;
+    margin-top: 18px;
+}
+textarea.enter_description {
+    border: 1px solid lightgray;
+    width: 100%;
+    border-radius: 5px;
+    background: white;
+}
+.gender_group.Site_sports {
+    width: 100% !important;
+}
+.activity_add {
+    display: block;
+}
+.presiv_add_time .add_Time {
+    display: inline-block;
+    margin-top: 15px;
+    margin-right: 17px;
+}
+.start_time h1 {
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 0;
+}
+.start_time  .add_Time {
+    width: 30.7%;
+}
+.start_time {
+    margin-top: 20px;
+}
+.activity_add {
+    margin-top: 35px;
+}
+.add-event_count input[type="checkbox"] {
+    width: 17px;
+    height: 17px;
+}
+.add-event_count input[type="radio"] {
+    width: 20px;
+    height: 20px;
+}
+.choose_radio_yes {
+    display: flex;
+    align-items: center;
+}
+.upload_choose_file input {
+    height: 44px;
+    border: none;
+}
+.calender_days li {
+    margin-right: 7px;
+}
+.time_start_weight {
+    display: flex;
+    flex-wrap: wrap;
+}
+.Reservation_countent_Nasar_Nights_box ul {
+    padding-left: 10px;
+}
+.login_input_count.forget_password a {
+    color: #000;
+    text-decoration: none;
+}
+.anything {
+    position: relative;
+    left: 1px;
+}
+.about_Who_We_Are_count span {
+    font-weight: normal;
+    font-size: 15px;
+}
+li.Sign_up_to_our_newsletter {
+    margin-right: 15px;
+}
+
+.name_reserva_class {
+    display: inline-block;
+    margin-right: 4px;
+}
+
+.city_kuwait_rading span {
+    height: 22px;
+    -webkit-line-clamp: 1;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.meb_enwnt span {
+    height: 16px;
+    -webkit-line-clamp: 1;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-height: 15px;
+}
+li.name_reserva {
+    display: flex;
+}
+li.Mebar_event img {
+    margin-top: 6px;
+}
+.city_kuwait_rading img {
+    margin-top: 7px;
+}
+li.name_reserva span {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    height: 22px;
+}
+.Members_Raiding span {
+    line-height: 22px;
+}
+.Members_Raiding img {
+    margin-top: 4px;
+}
+li.Mebar_event img {
+    margin-top: 0;
+}
+li.Mebar_event {
+    margin-top: 20px;
+}
+.swal2-popup {
+    font-size: 12px;
+ }
+ .swal2-confirm {
+    width: auto;
+    height: auto;
+ }
+ .custom-cart{
+    font-size: 30px;
+ }
+
+ .jharkhand_checkout_btn {
+    margin-top: 25px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    padding:10px;
+    float: right;
+}
+.jharkhand_checkout_btn button {
+    background: linear-gradient(99.09deg, #33A2B0 0%, #c4e0e5 100%);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.08);
+    border-radius: 30px;
+    padding: 8px 25px;
+    border: none;
+    color:white;
+}
+.jharkhand_checkout_btn button a{
+    color:white;
+    text-decoration: none;
+}
+.carousel {
+    height: 50%; }
+    .carousel .carousel-inner {
+      height: 100%; }
+      .carousel .carousel-inner .carousel-item,
+      .carousel .carousel-inner .active {
+        height: 100%; }
+  
+  /* Adjustment for mobile devices*/
+  @media (max-width: 776px) {
+    .carousel {
+      height: 100%; } }
+  
+  /* Footer color for sake of consistency with Navbar */
+  .page-footer {
+    background-color: #929FBA; }
+ /* --------------- Details---  Page------ */
+
+ li.cart_counter_header_user_dropdown {
+    position: relative;
+}
+li.nav-item.cart_counter_header_user_dropdown a.cart_counter_header_user {
+    text-decoration: none;
+    margin-right: 15px;
+}
+li.nav-item.cart_counter_header_user_dropdown a.cart_counter_header_user i.fa.fa-angle-down {
+    margin-left: 7px;
+}
+

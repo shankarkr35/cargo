@@ -1,0 +1,157 @@
+{% load static %}
+{% load i18n %}
+  <!-- Start Footer Area -->
+  <footer class="footer_dark">
+    <div class="footer_top">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="medium_divider clearfix"></div>
+          </div>
+        </div>   
+        <div class="row">
+          <div class="col-lg-5 col-md-6 col-sm-12">
+            <div class="widget">
+              <div class="footer_logo"> <a href="#"><img src="{% static 'assets/front/front-end/images/logo.jpeg'%}" style="width:100px;height:100px;" alt="logo"/></a> </div>
+              <p>{% trans "footer_content" %}</p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-3 col-6">
+            <div class="widget">
+              <h6 class="widget_title">{% trans "useful_links" %}</h6>
+              <ul class="widget_links">
+                <li><a href="{% url 'courier-signup' %}">{% trans "signup_as_courier" %}</a></li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="col-lg-4 col-md-12 col-sm-12">
+            <div class="widget">
+              <h6 class="widget_title">{% trans "social_links" %}</h6>
+              <ul class="social_icons social_white">
+                <li><a href="{{ 'https://'|add:support_data.facebook_url }}" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                </li>
+                <li><a href="{{ 'https://'|add:support_data.twitter_url }}" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                <li><a href="{{ 'https://'|add:support_data.youtube_url }}" target="_blank" ><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
+                <li><a href="{{ 'https://'|add:support_data.instagram_url }}" target="_blank" ><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+              </ul> 
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="bottom_footer border-top-tran">
+            <div class="row">
+              <div class="col-md-6">
+                <p class="mb-md-0 text-center text-md-left">{% trans "all_reserved" %}</p>
+              </div>
+              <div class="col-md-6">
+                <ul class="list_none footer_link text-center text-md-right">
+                  <li><a href="{% url 'privacy_policy' %}">Privacy Policy</a></li>
+                  <li><a href="{% url 'term_condition' %}">Terms &amp; Conditions</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="waveWrapper">
+      <div class="footer-wave waveTop"></div>
+    </div>
+  </footer>
+  </div>
+  <!-- End Footer Area -->
+
+  <!-- Popper Min JS --> 
+  <script src="{% static 'assets/front/js/popper.min.js' %}"></script> 
+  <!-- Bootstrap Min JS --> 
+  <script src="{% static 'assets/front/js/bootstrap.min.js' %}"></script> 
+  <!-- Owl Carousel Min JS --> 
+  <script src="{% static 'assets/front/js/owl.carousel.min.js' %}"></script> 
+  <!-- Owl Plugins JS --> 
+  <script src="{% static 'assets/front/js/plugins.js' %}"></script> 
+  <!-- Odometer min JS --> 
+  <script src="{% static 'assets/front/js/odometer.min.js' %}"></script> 
+  <!-- Appear JS --> 
+  <script src="{% static 'assets/front/js/jquery.appear.js' %}"></script> 
+  <!-- datepicker min JS -->
+  <script src="{% static 'assets/front/js/datepicker.js' %}"></script>
+  <script src="{% static 'assets/front/js/datepicker.en.js' %}"></script>
+  <!--Fontawesome js --> 
+  <script src="{% static 'assets/front/js/fontawesome.js' %}"></script> 
+  <!-- MagnificPopup JS --> 
+  <script src="{% static 'assets/front/js/jquery.magnific-popup.min.js' %}"></script> 
+  <!-- Swiper Min JS --> 
+  <script src="{% static 'assets/front/js/swiper.min.js' %}"></script> 
+  <!-- Venobox Min JS --> 
+  <script src="{% static 'assets/front/js/venobox.min.js' %}"></script> 
+  <!-- Custom JS --> 
+  <script src="{% static 'assets/front/js/custom.js' %}"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const languageLinks = document.querySelectorAll("[data-lang-code]");
+
+        languageLinks.forEach(function (link) {
+            link.addEventListener("click", function (event) {
+                event.preventDefault();
+                const langCode = this.getAttribute("data-lang-code");
+                const currentUrl = window.location.href;
+                if(currentUrl=='http://159.65.63.66:8002/'){
+                  const updatedUrl = currentUrl+ langCode + "/";
+                  window.location.href = updatedUrl;
+                }else{
+                  const updatedUrl = currentUrl.replace(/\/[a-z]{2}\//, "/" + langCode + "/");
+                  window.location.href = updatedUrl;
+                }
+                
+            });
+        });
+    });
+</script> 
+
+{% comment %} <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const languageLinks = document.querySelectorAll("[data-lang-code]");
+
+        languageLinks.forEach(function (link) {
+            link.addEventListener("click", function (event) {
+                event.preventDefault();
+                const langCode = this.getAttribute("data-lang-code");
+                const currentUrl = window.location.href;
+
+                // Debugging: Log langCode and currentUrl to check their values
+                console.log("Lang Code:", langCode);
+                console.log("Current URL:", currentUrl);
+
+                // Check if the current URL is the root URL
+                if (currentUrl.endsWith("/")) {
+                    // If it's the root URL, simply append the langCode
+                    const updatedUrl = currentUrl + langCode + "/";
+                    window.location.href = updatedUrl;
+                } else {
+                    // If it's not the root URL, replace the language code segment
+                    const regex = /\/[a-zA-Z]{2}\//;
+                    const updatedUrl = currentUrl.replace(regex, "/" + langCode + "/");
+                    
+                    // Debugging: Log updatedUrl to check the result
+                    console.log("Updated URL:", updatedUrl);
+
+                    window.location.href = updatedUrl;
+                }
+            });
+        });
+    });
+</script>
+ {% endcomment %}
+
+
+
+
+  </body>
+  
+  <!-- Mirrored from sbtechnosoft.com/transcrew/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 10 Jul 2023 08:49:36 GMT -->
+  </html>

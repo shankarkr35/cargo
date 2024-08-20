@@ -1,0 +1,155 @@
+{% extends 'front/base.html' %}
+{% block content %}
+{% load static %}
+
+  <!-- Main Slider -->
+  <section class="main-slider">
+    <div class="banner-carousel"> 
+      <!-- Swiper -->
+      <div class="swiper-wrapper">
+        <div class="swiper-slide slide" style="background-image:url({% static 'assets/front/images/slider-img1.jpg' %})">
+          <div class="curve"></div>
+          <div class="auto-container">
+            <div class="content">
+              <div class="title">Welcome to Transcrew</div>
+              <h2>We Provide Best Courier & <br> 
+                Parcel Services</h2>
+              <div class="btn-box"> <a href="contact.html" class="theme-btn btn-style-one"><span class="txt">Contact Us</span></a> </div>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide slide" style="background-image:url({% static 'assets/front/images/slider-img2.jpg' %})">
+          <div class="curve"></div>
+          <div class="auto-container">
+            <div class="content">
+              <div class="title">Welcome to Transcrew</div>
+              <h2>We Provide Best Courier & <br> 
+                Parcel Services</h2>
+              <div class="btn-box"> <a href="contact.html" class="theme-btn btn-style-one"><span class="txt">Contact Us</span></a> </div>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide slide" style="background-image:url({% static 'assets/front/images/slider-img3.jpg' %})">
+          <div class="curve"></div>
+          <div class="auto-container">
+            <div class="content">
+              <div class="title">Welcome to Transcrew</div>
+              <h2>We Provide Best Courier & <br> 
+                Parcel Services</h2>
+              <div class="btn-box"> <a href="contact.html" class="theme-btn btn-style-one"><span class="txt">Contact Us</span></a> </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Add Pagination -->
+      <div class="swiper-pagination"></div>
+      <!-- Add Arrows -->
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
+    <div class="bottom-img"> <img src="{% static 'assets/front/images/header-shape.png'%}" alt=""> </div>
+  </section>
+  <!-- End Main Slider -->
+<section class="about-sec">
+  <div class="container">
+    <div class="row align-items-center clearfix">
+      <div class="col-lg-6 col-md-12 col-sm-12 image-column">
+        <div id="image_block_1">
+        <div class="image-box">
+          <figure class="image"><img src="{% static 'assets/front/images/about-1.jpg'%}" alt=""></figure>
+          <div class="box">
+            <div class="inner">
+              <div class="icon-box">
+                <div class="icon icon-1"></div>
+                <div class="icon icon-2"></div>
+              </div>
+              <span>We Provide Best Courier Services</span>
+              <h1>24</h1>
+              <p>Years Of Experience</p>
+            </div>
+          </div>
+        </div>  
+      </div>         
+      </div>
+      <div class="col-lg-6 col-md-12 col-sm-12 content-column">
+        <div id="content_block_1">
+          <div class="content-box">
+            <div class="section-title">
+              <p>Who are Transcrew</p>
+              <h2>Best Courier & Parcel Services</h2>
+              <div class="dotted-box"> <span class="dotted"></span> <span class="dotted"></span> <span class="dotted"></span> </div>
+            </div>
+            <div class="bold-text">
+              <p>Business applications through revolutionary catalysts for procedures whereas processes.</p>
+            </div>
+            <div class="text">
+              <p>Distinctively exploit optimal alignments for intuitive. Quickly coordinate business applications through revolutionary catalysts for chang the Seamlessly optimal testing procedures whereas processes. Synerg stically evolve 2.0 technologies rather than just in web & apps development optimal alignments for intuitive.</p>
+            </div>
+            <div class="btn-box"> <a href="about-us.html" class="bttn1">Read More <i class="bx bxs-right-arrow-alt bx-fade-left bx-flip-vertical"></i></a> </div>
+          </div>
+        </div>        
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End About Section -->
+<!-- Start Our Team Area -->
+<section class="our-team-sec" style="display:none;">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 col-md-8">
+        <div class="sec-title">
+      <h2><span>Our Team</span></h2>
+      <p>Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum,sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit</p>
+    </div>
+  </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-4 col-md-6">
+      <!-- Single Our Team Area -->
+      <div class="our-team"> <img src="{% static 'assets/front/images/team-img1.jpg'%}" alt="">
+        <h4><a href="#">Adam Gillwarms</a></h4>
+        <span class="designation bg-theme">Courier Person</span>
+        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium</p>
+        <ul class="our-team-profile">
+          <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+          <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+          <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+          <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+        </ul>
+      </div>      
+    </div>
+    <div class="col-lg-4 col-md-6">
+      <!-- Single Our Team Area -->
+      <div class="our-team"> <img src="{% static 'assets/front/images/team-img2.jpg'%}" alt="">
+        <h4><a href="#">Dany Lizwani</a></h4>
+        <span class="designation bg-theme">Courier Person</span>
+        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium</p>
+        <ul class="our-team-profile">
+          <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+          <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+          <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+          <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+        </ul>
+      </div>      
+    </div>
+    <div class="col-lg-4 col-md-6">
+      <!-- Single Our Team Area -->
+      <div class="our-team"> <img src="{% static 'assets/front/images/team-img3.jpg'%}" alt="">
+        <h4><a href="#">Adam Gillwarms</a></h4>
+        <span class="designation bg-theme">Courier Person</span>
+        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium</p>
+        <ul class="our-team-profile">
+          <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+          <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+          <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+          <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+        </ul>
+      </div>      
+    </div>
+  </div>
+  </div>
+</section>
+<!-- End Our Team Area -->
+
+{% endblock content %}

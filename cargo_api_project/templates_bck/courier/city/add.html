@@ -1,0 +1,141 @@
+{% extends 'backend/base.html' %}
+{% block content %}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6"> 
+            <h1>Dashboard</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="<?php echo base_url('admin-dashboard')?>">Home</a></li>
+              <li class="breadcrumb-item active"><a href="{% url 'city-management' %}">City List</a></li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card card-danger">
+              <div class="card-header">
+                <h3 class="card-title">New City</h3>
+            <form enctype="multipart/form-data" method="POST" class="uform">
+              </div>
+                <div class="card-body">
+                
+                {% csrf_token %}
+                    <input type="hidden" name="csrfmiddlewaretoken" value="">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Name :</label>
+                    <input type="text" class="form-control" id="name" placeholder="Name.*">
+                    <span class="text-danger font-weight-bold" id="name-err"></span>
+                  </div>
+                  
+                  
+                </div>
+                <div class="card-footer" id="save-btn-conatiner">
+                  <button type="button" class="btn btn-danger" id="save-btn-custom">Save</button>
+                </div>
+            </div>
+            </form>
+          </div>
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  
+<script>
+    document.querySelectorAll('input[type="number"]').forEach(input=>{
+        input.oninput = () =>{
+            if(input.value.length > input.maxLength) input.value = input.value.slice(0,input.maxLength);
+        }
+    })
+</script>   
+<script>
+    $(document).ready(function() 
+    {
+        $('.dropify').dropify();
+    });
+
+    $(function () {
+        $('#description').summernote({
+          height: 200,
+        });
+        
+        $('#arpostDescription').summernote('justifyRight');
+      });
+</script>
+<script>
+    $(document).ready(function(){
+        $(document).on('click','#save-btn-custom',function(){
+          const reg_email = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
+            var name = $('#name').val();
+            
+            if(name=="")
+            {
+                $('#name').addClass('is-invalid');
+                $('#name-err').text('Enter City Name.*');
+            }else{
+                $('#name').removeClass('is-invalid');
+                $('#name-err').text('');
+            }
+            
+            if(name!="")
+            {
+                var fd = new FormData();
+                fd.append('name',name);
+                fd.append('csrfmiddlewaretoken',$('input[name="csrfmiddlewaretoken"]').val())
+                $.ajax({
+                    url: '/location/create/',
+                    method: "POST",
+                    data: fd,
+                    contentType: false,
+                    processData: false,
+                    //dataType: "JSON",
+                    beforeSend: function(){
+                    $('#name').removeClass('is-invalid');
+                    $('#name-err').text('');
+                    
+                    $("#save-btn-conatiner").html('<div class="spinner-border text-danger text-right"></div>');
+                   },
+                    success: function(data) {
+                        console.log(data)
+                      if ((data != null) && (data.msg == 'Added')) 
+                      {
+                        sessionStorage.setItem('saved',true);
+                        window.location.href = '/location/city-management/';
+                      } else if((data != null) && (data.msg == 'already exist')) {
+                        $('#name').addClass('is-invalid');
+                        $('#name-err').text('Name already Exist.*');
+                      }
+                    },complete:function(data){
+                     $("#save-btn-conatiner").html('<button type="button" class="btn btn-danger" id="save-btn-custom">Save</button>');
+                   }
+                });
+            }
+
+        })
+    })
+</script>
+
+<script>
+    $(document).ready(function() 
+    {
+        $('.dropify').dropify();
+        $('.select2').select2();
+        $('.select2bs4').select2({
+        theme: 'bootstrap4'
+        });
+    });
+</script>
+
+{% endblock content %}

@@ -1,0 +1,164 @@
+{% extends 'backend/base.html' %}
+{% block content %}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6"> 
+            <h1>Dashboard</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="/auth/admin-dashboard/">Home</a></li>
+              <li class="breadcrumb-item active"><a href="/auth/vehicle-type-management/">Vehicle Type List</a></li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card card-danger">
+              <div class="card-header">
+                <h3 class="card-title">New Vehicle Type</h3>
+            <form enctype="multipart/form-data" method="POST" class="uform">
+              </div>
+                <div class="card-body">
+                
+                {% csrf_token %}
+                  <input type="hidden" name="csrfmiddlewaretoken" value="">
+                 
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Vehicle Type (en) :</label>
+                    <input type="text" class="form-control" id="title" placeholder="Vehicle Type.*">
+                    <span class="text-danger font-weight-bold" id="title-err"></span>
+                  </div>
+                  <div class="form-group"> 
+                    <label for="exampleInputEmail1">Vehicle Type (ar) :</label>
+                    <input type="text" class="form-control arabic-input" id="title_ar" placeholder="Vehicle Type.*">
+                    <span class="text-danger font-weight-bold" id="title_ar-err"></span>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="exampleInputFile">Image :</label>
+                    <div class="white-box">
+                        <input type="file" id="file" name="file" class="dropify" data-default-file="/static/default.png" /> 
+                        <span class="text-danger font-weight-bold" id="file-err"></span>
+                    </div>
+                  </div>
+                  
+                </div>
+                <div class="card-footer" id="save-btn-conatiner">
+                  <button type="button" class="btn btn-danger" id="save-btn-custom">Save</button>
+                </div>
+            </div>
+            </form>
+          </div>
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+   
+<script>
+    document.querySelectorAll('input[type="number"]').forEach(input=>{
+        input.oninput = () =>{
+            if(input.value.length > input.maxLength) input.value = input.value.slice(0,input.maxLength);
+        }
+    })
+</script>   
+<script>
+    $(document).ready(function() 
+    {
+        $('.dropify').dropify();
+    });
+
+    $(function () {
+        $('#description').summernote({
+          height: 200,
+        });
+        
+        $('#arpostDescription').summernote('justifyRight');
+      });
+</script>
+<script>
+    $(document).ready(function(){
+        $(document).on('click','#save-btn-custom',function(){
+          const reg_email = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
+            var title = $('#title').val();
+            var title_ar = $('#title_ar').val();
+            var files = $('#file')[0].files[0];
+
+            if(title=="")
+            {
+                $('#title').addClass('is-invalid');
+                $('#title-err').text('Enter Vehicle Type Title.*').css({"color":"red","font-weight":"bold"}).fadeIn(1000).delay(3000).fadeOut("slow");
+            }else{
+                $('#title').removeClass('is-invalid');
+                $('#title-err').text('');
+            }
+           
+            
+            if(title!="" )
+            {
+                var fd = new FormData();
+                var files = $('#file')[0].files[0];
+                
+                fd.append('files',files);
+                fd.append('title',title);
+                fd.append('title_ar',title_ar);
+                
+                fd.append('csrfmiddlewaretoken',$('input[name="csrfmiddlewaretoken"]').val())
+                $.ajax({
+                    url: '/auth/create-vehicle-type/',
+                    method: "POST",
+                    data: fd,
+                    contentType: false,
+                    processData: false,
+                    //dataType: "JSON",
+                    beforeSend: function(){
+                    $('#title').removeClass('is-invalid');
+                    $('#title-err').text('');
+                    
+                    $("#save-btn-conatiner").html('<div class="spinner-border text-danger text-right"></div>');
+                   },
+                    success: function(data) {
+                        console.log(data)
+                      if ((data != null) && (data.msg == 'Added')) 
+                      {
+                        sessionStorage.setItem('saved',true);
+                        window.location.href = '/auth/vehicle-type-management/';
+                      } else if((data != null) && (data.msg == 'already exist')) {
+                        $('#title').addClass('is-invalid');
+                        $('#title-err').text('Vehicle Type Title Already Exist.*');
+                      }
+                      
+                    },complete:function(data){
+                     $("#save-btn-conatiner").html('<button type="button" class="btn btn-danger" id="save-btn-custom">Save</button>');
+                   }
+                });
+            }
+
+        })
+    })
+</script>
+
+<script>
+    $(document).ready(function() 
+    {
+        $('.dropify').dropify();
+        $('.select2').select2();
+        $('.select2bs4').select2({
+        theme: 'bootstrap4'
+        });
+    });
+</script>
+
+{% endblock content %}

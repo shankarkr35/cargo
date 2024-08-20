@@ -1,0 +1,237 @@
+{% extends 'backend/base.html' %}
+{% block content %}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6"> 
+            <h1>Dashboard</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="/auth/admin-dashboard/">Home</a></li>
+              <li class="breadcrumb-item active"><a href="{% url 'about-management' %}">About Us</a></li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card card-danger">
+              <div class="card-header">
+                <h3 class="card-title">About Us</h3>
+            <form enctype="multipart/form-data" method="POST" class="uform">
+              </div>
+                <div class="card-body">
+                
+                {% csrf_token %}
+                  <input type="hidden" name="csrfmiddlewaretoken" value="">
+                   
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Title-1 (en) :</label>
+                    <input type="text" class="form-control" id="title" placeholder="Title (en).*" value="{{list.title}}">
+                    <span class="text-danger font-weight-bold" id="title-err"></span>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Title-1 (ar) :</label>
+                    <input type="text" class="form-control arabic-input" id="title_ar" placeholder="Title (ar).*" value="{{list.title_ar}}">
+                    <span class="text-danger font-weight-bold" id="title_ar-err"></span>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Title-2 (en):</label>
+                    <input type="text" class="form-control" id="title1" placeholder="Title1 (en).*" value="{{list.title1}}">
+                    <span class="text-danger font-weight-bold" id="title1-err"></span>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Title-2 (ar):</label>
+                    <input type="text" class="form-control arabic-input" id="title1_ar" placeholder="Title1 (ar).*" value="{{list.title1_ar}}">
+                    <span class="text-danger font-weight-bold" id="title1_ar-err"></span>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Description (en) :</label>
+                    <textarea  class="form-control" id="description" placeholder="Description (en).*">{{list.description}}</textarea>
+                    <span class="text-danger font-weight-bold" id="description-err"></span>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Description (ar) :</label>
+                    <textarea  class="form-control" id="description_ar" placeholder="Description (ar).*">{{list.description_ar}}</textarea>
+                    <span class="text-danger font-weight-bold" id="description_ar-err"></span>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Experience Description (en) :</label>
+                    <input type="text" class="form-control" id="experience_desc" placeholder="Experience Description (en).*" value="{{list.experience_desc}}">
+                    <span class="text-danger font-weight-bold" id="experience_desc-err"></span>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Experience Description (ar) :</label>
+                    <input type="text" class="form-control arabic-input" id="experience_desc_ar" placeholder="Experience Description (ar).*" value="{{list.experience_desc_ar}}">
+                    <span class="text-danger font-weight-bold" id="experience_desc_ar-err"></span>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Experience year :</label>
+                    <input type="text" class="form-control" id="experience_year" placeholder="Experience Year.*" value="{{list.experience_year}}">
+                    <span class="text-danger font-weight-bold" id="experience_year-err"></span>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Experience Title (en) :</label>
+                    <input type="text" class="form-control" id="experience_title" placeholder="Experience Title (en).*" value="{{list.experience_title}}">
+                    <span class="text-danger font-weight-bold" id="experience_title-err"></span>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Experience Title (ar) :</label>
+                    <input type="text" class="form-control arabic-input" id="experience_title_ar" placeholder="Experience Tile (ar).*" value="{{list.experience_title_ar}}">
+                    <span class="text-danger font-weight-bold" id="experience_title_ar-err"></span>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputFile">Image :</label>
+                    <div class="white-box">
+                      {% if list.image %}
+                      <input type="file" id="file" name="file" class="dropify" data-default-file="{{MEDIA_URL}}{{list.image.url}}" /> 
+                      {% else %}
+                      <input type="file" id="file" name="file" class="dropify" data-default-file="/static/default.png" />
+                      {% endif %}
+                    </div>
+                  </div>
+                  
+                </div>
+                <div class="card-footer" id="save-btn-conatiner">
+                  <button type="button" class="btn btn-danger" id="save-btn-custom">Save</button>
+                </div>
+            </div>
+            </form>
+          </div>
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  
+<script>
+    document.querySelectorAll('input[type="number"]').forEach(input=>{
+        input.oninput = () =>{
+            if(input.value.length > input.maxLength) input.value = input.value.slice(0,input.maxLength);
+        }
+    })
+</script>   
+<script>
+    $(document).ready(function() 
+    {
+        $('.dropify').dropify();
+    });
+
+    $(function () {
+        $('#description').summernote({
+          height: 200,
+        });
+        
+        $('#description_ar').summernote('justifyRight');
+      });
+</script>
+<script>
+    $(document).ready(function(){
+        $(document).on('click','#save-btn-custom',function(){
+          const reg_email = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
+            var title = $('#title').val();
+            var title_ar = $('#title_ar').val();
+            var title1 = $('#title1').val();
+            var title1_ar = $('#title1_ar').val();
+            var description = $('#description').val();
+            var description_ar = $('#description_ar').val();
+            var experience_desc = $('#experience_desc').val();
+            var experience_desc_ar = $('#experience_desc_ar').val();
+            var experience_year = $('#experience_year').val();
+            var experience_title = $('#experience_title').val();
+            var experience_title_ar = $('#experience_title_ar').val();
+            
+            if(title=="")
+            {
+                $('#title').addClass('is-invalid');
+                $('#title-err').text('Enter Title Name.*');
+            }else{
+                $('#title').removeClass('is-invalid');
+                $('#title-err').text('');
+            }
+            
+            if(title!="")
+            {
+                var fd  = new FormData();
+                var files = $('#file')[0].files[0];
+                
+                fd.append('files',files);
+                fd.append('title',title);
+                fd.append('title_ar',title_ar);
+                fd.append('title1',title1);
+                fd.append('title1_ar',title1_ar);
+                fd.append('description',description);
+                fd.append('description_ar',description_ar);
+                fd.append('experience_desc',experience_desc);
+                fd.append('experience_desc_ar',experience_desc_ar);
+                fd.append('experience_year',experience_year);
+                fd.append('experience_title',experience_title);
+                fd.append('experience_title_ar',experience_title_ar);
+                fd.append('id',"{{list.id}}");
+                
+                fd.append('csrfmiddlewaretoken',$('input[name="csrfmiddlewaretoken"]').val())
+                $.ajax({
+                    url: '/auth/update-about-us/',
+                    method: "POST",
+                    data: fd,
+                    contentType: false,
+                    processData: false,
+                    //dataType: "JSON",
+                    beforeSend: function(){
+                    $('#title').removeClass('is-invalid');
+                    $('#title-err').text('');
+                    
+                    $("#save-btn-conatiner").html('<div class="spinner-border text-danger text-right"></div>');
+                   },
+                    success: function(data) {
+                        console.log(data)
+                      if ((data != null) && (data.msg == 'Updated')) 
+                      {
+                        sessionStorage.setItem('updated',true);
+                        window.location.href = '/auth/about-management/';
+                      } 
+                    },complete:function(data){
+                     $("#save-btn-conatiner").html('<button type="button" class="btn btn-danger" id="save-btn-custom">Save</button>');
+                   }
+                });
+            }
+
+        })
+    })
+</script>
+<script>
+  $(function () {
+    if (sessionStorage.getItem('updated')) {
+      swal({
+        title: 'Data Updated.',
+        text: 'Data Details updated successfully.!',
+        type: 'success',
+        confirmButtonClass: 'btn-primary btn-sm',
+        confirmButtonText: 'OK',
+      });
+      sessionStorage.removeItem('updated');
+    }
+
+  });
+</script>
+<script>
+    $(document).ready(function() 
+    {
+        $('.dropify').dropify();
+        $('.select2').select2();
+        $('.select2bs4').select2({
+        theme: 'bootstrap4'
+        });
+    });
+</script>
+
+{% endblock content %}

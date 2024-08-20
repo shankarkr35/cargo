@@ -1,0 +1,135 @@
+{% extends 'backend/base.html' %} {% block content %}
+<div class="content-wrapper">
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Dashboard</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="">Home</a></li>
+            <li class="breadcrumb-item active">Orders Details</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <!-- title row -->
+            <div class="invoice p-3 mb-3">
+            <div class="row">
+              <div class="col-12">
+                <h4>
+                  {{data.order_id}} - {% if data.paymentMethod == 'wallet' and data.paymentStatus == 'Success' %}<button class="btn bg-gradient-warning btn-xs">Paid By Wallet</button> {% elif data.paymentMethod == 'knet' and data.paymentStatus == 'Success' %}<button class="btn bg-gradient-success btn-xs">Online Paid</button>{% else %}<button class="btn bg-gradient-danger btn-xs">Not Paid</button>{% endif %}
+                  <small class="float-right">Date : {{data.created_at}}</small>
+                </h4>
+              </div>
+            </div>
+            <div class="row invoice-info">
+              <div class="col-sm-4 invoice-col">
+                <address>
+                  <strong style="font-size: 20px;">{{data.user.fullname}}</strong><br>
+                  <b>Pickup Address:</b><br>
+                  {{ data.pickup.address}}<br>
+                  Phone : {{data.user.phone}}<br>
+                  Email : {{data.user.email}}<br>
+                  {% if data.paymentMethod == 'online' %}
+                  Transaction ID : {{data.transactionId}}<br>
+                  {% endif %}
+                </address>
+              </div>
+            </div>
+            <!-- /.row -->
+            <!-- /.card-header -->
+            <div class="card-body">
+              <table class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>Order Id</th>
+                    <th>Pickup time</th>
+                    <th>Pickup Adress</th>
+                    <th>Destination Address</th>
+                    <th>Vehicle Type</th>
+                    <th>Driver</th>
+                    <th>Package</th>
+                    <th>Package Weight</th>
+                    
+                    <th>Status</th>
+                    {% comment %} <th>Action</th> {% endcomment %}
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                  <tr id="row{{data.id}}">
+                    
+                    <td>{{ data.order_id}}</td>
+                    <td>{{ data.pickup_time}}</td>
+                    <td><textarea>{{ data.pickup_address }}</textarea></td>
+                    <td><textarea>{{ data.destination_address }}</textarea></td>
+                    <td>{{ data.vehicle_type.title}}</td>
+                    <td>{{ data.driver.name}}</td>
+                    <td>{{ data.package.size}}</td>
+                    
+                    <td>{{ data.package.weight_range}}</td>
+                    
+                    <td width="15%">
+                      <select class="form-control status-change1" id="{{data.id}}" disabled>
+                        <option value="1" {% if data.status == 1 %} selected {% endif %}>Running</option>
+                        <option value="2" {% if data.status == 2 %} selected {% endif %}>Accepted By Driver</option>
+                        <option value="4" {% if data.status == 4 %} selected {% endif %}>Pickup</option>
+                        <option value="5" {% if data.status == 5 %} selected {% endif %}>Delivered By Driver</option>
+                        <option value="6" {% if data.status == 6 %} selected {% endif %}>Cancelled By User</option>
+                      </select>
+                    </td>
+                    
+                  </tr>
+                  
+                </tbody>
+              </table>
+            </div>
+          </div>
+            {% csrf_token %}
+            <input type="hidden" name="csrfmiddlewaretoken" value="">
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+  <!-- /.content -->
+</div>
+
+<script>
+  $(function () {
+    $('#custom-data-table')
+      .DataTable({
+        responsive: true,
+        lengthChange: true,
+        autoWidth: false,
+        //buttons: ['copy', 'csv', 'excel', 'pdf', 'print'],
+        columnDefs: [
+          {
+            targets: [1, 2, 3] /* column index */,
+            orderable: false /* true or false */,
+          },
+        ],
+      })
+      .buttons()
+      .container()
+      .appendTo('#custom-data-table_wrapper .col-md-6:eq(0)');
+  });
+</script>
+
+{% endblock content %}

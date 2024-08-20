@@ -1,0 +1,135 @@
+
+{% block content %}
+{% load %}
+{% load custom_tags %}
+
+<!-- Your sidebar HTML code -->
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="/auth/admin-dashboard/" class="brand-link">
+      <img src="/static/assets/admin/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light">Cargo App</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="/static/assets/front/front-end/images/logo.jpeg" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <a href="/auth/admin-dashboard/" class="d-block">Cargo-App</a>
+        </div>
+      </div>
+
+      <!-- SidebarSearch Form -->
+      <div class="form-inline">
+        <div class="input-group" data-widget="sidebar-search">
+          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+          <div class="input-group-append">
+            <button class="btn btn-sidebar">
+              <i class="fas fa-search fa-fw"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item menu-open">
+            <a href="{% url 'admin-dashboard' %}" class="nav-link {% if request.path == '/admin-dashboard/' %} active {% endif %}">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Dashboard
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+          </li>
+     
+          <li class="nav-item">
+            <a href="/auth/courier-management" class="nav-link {% if request.path == '/auth/courier-management/' or request.path == '/auth/add-courier/' or request.path|slice:'-2' == '/auth/edit-courier/' or request.path|slice:'-2' == '/auth/courier-details/'%} active {% endif %}">
+              <i class="nav-icon fas fa-ship"></i>
+              <p>
+                Courier Company
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/auth/driver-management" class="nav-link {% if request.path == '/auth/driver-management/' or request.path == '/auth/add-driver/' or request.path|slice:'-2' == '/auth/edit-driver'%} active {% endif %}">
+              <i class="nav-icon far fa-user"></i>
+              <p>
+                Driver
+              </p>
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a href="/auth/vehicle-type-management" class="nav-link {% if request.path == '/auth/vehicle-type-management/' or request.path == '/auth/add-vehicle-type/' or request.path|slice:'-2' == '/auth/edit-vehicle-type'  %} active {% endif %}">
+              <i class="nav-icon fas fa-car"></i>
+              <p>
+                Vehicle Types
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/auth/vehicle-management" class="nav-link {% if request.path == '/auth/vehicle-management/' or request.path == '/auth/add-vehicle/' or request.path|slice:'-2' == '/auth/edit-vehicle'  %} active {% endif %}">
+              <i class="nav-icon fas fa-car"></i>
+              <p>
+                Vehicles
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/auth/package-management" class="nav-link {% if request.path == '/auth/package-management/' or request.path == '/auth/add-package/' or request.path|slice:'-2' == '/auth/edit-package'  %} active {% endif %}">
+              <i class="nav-icon fas fa-box-open"></i>
+              <p>
+                Package
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/auth/user-management" class="nav-link {% if request.path == '/auth/user-management/' or request.path == '/auth/add-user/' or request.path|slice:'-2' == '/auth/edit-user'%} active {% endif %}">
+              <i class="nav-icon far fa-user"></i>
+              <p>
+                User Management
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/auth/orders-management/" class="nav-link {% if request.path == '/auth/orders-management/'  %} active {% endif %}">
+              <i class="nav-icon fas fa-shipping-fast"></i>
+              <p>
+                Orders
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/auth/delivery-charge/" class="nav-link {% if request.path == '/auth/delivery-charge/'  %} active {% endif %}">
+              <i class="nav-icon fas fa-shipping-fast"></i>
+              <p>
+                Delivery Charge
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/auth/contact-files/" class="nav-link {% if request.path == '/auth/contact-files/'  %} active {% endif %}">
+              <i class="nav-icon fas fa-file-contract"></i>
+              <p>
+                Contract File
+              </p>
+            </a>
+          </li>
+          
+          
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+  {% endblock content %}

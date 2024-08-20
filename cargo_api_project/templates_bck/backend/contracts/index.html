@@ -1,0 +1,142 @@
+{% extends 'backend/base.html' %}
+{% block content %}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6"> 
+            <h1>Dashboard</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="/auth/admin-dashboard/">Home</a></li>
+              
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card card-danger">
+              <div class="card-header">
+                <h3 class="card-title">Contract File manage/</h3>
+            <form enctype="multipart/form-data" method="POST" class="uform">
+              </div>
+                <div class="card-body">
+                
+                {% csrf_token %}
+                  <input type="hidden" name="csrfmiddlewaretoken" value="">
+                  
+                  <div class="form-group">
+                    <label for="exampleInputFile">Contract File :</label>
+                    <div class="white-box">
+                        {% if list.contract_file %}
+                        <input type="file" id="file" name="file"  class="dropify" data-default-file="{{MEDIA_URL}}{{list.contract_file.url}}" /> 
+                        {% else %}
+                        <input type="file" id="file" name="file" class="dropify" data-default-file="/static/default.png" />
+                        {% endif %}
+                    </div>
+                    <span><a href="{{MEDIA_URL}}{{list.contract_file.url}}" target="_blank">View File<a></span>
+                  </div>
+                  
+                </div>
+                <div class="card-footer" id="save-btn-conatiner">
+                  <button type="button" class="btn btn-danger" id="save-btn-custom">Upload File</button>
+                </div>
+            </div>
+            </form>
+          </div>
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+   
+
+<script>
+    $(document).ready(function() 
+    {
+        $('.dropify').dropify();
+    });
+
+    
+</script>
+<script>
+    $(document).ready(function(){
+        $(document).on('click','#save-btn-custom',function(){
+          const reg_email = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
+            var files = $('#file')[0].files[0];
+            
+                var fd = new FormData();
+                var files = $('#file')[0].files[0];
+                
+                fd.append('files',files);
+                fd.append('id','{{list.id}}');
+                
+                
+                fd.append('csrfmiddlewaretoken',$('input[name="csrfmiddlewaretoken"]').val())
+                $.ajax({
+                    url: '/auth/update-contact-files/',
+                    method: "POST",
+                    data: fd,
+                    contentType: false,
+                    processData: false,
+                    //dataType: "JSON",
+                    beforeSend: function(){
+                    $('#title').removeClass('is-invalid');
+                    $('#title-err').text('');
+                    
+                    $("#save-btn-conatiner").html('<div class="spinner-border text-danger text-right"></div>');
+                   },
+                    success: function(data) {
+                        console.log(data)
+                      if ((data != null) && (data.msg == 'Updated')) 
+                      {
+                        sessionStorage.setItem('updated',true);
+                        window.location.href = '/auth/contact-files/';
+                      } 
+                      
+                    },complete:function(data){
+                     $("#save-btn-conatiner").html('<button type="button" class="btn btn-danger" id="save-btn-custom">Upload File</button>');
+                   }
+                });
+            
+
+        })
+    })
+</script>
+<script>
+    $(document).ready(function() 
+    {
+        $('.dropify').dropify();
+        $('.select2').select2();
+        $('.select2bs4').select2({
+        theme: 'bootstrap4'
+        });
+    });
+</script>
+<script>
+  $(function () {
+    if (sessionStorage.getItem('updated')) {
+      swal({
+        title: 'Data Updated.',
+        text: 'Data Details updated successfully.!',
+        type: 'success',
+        confirmButtonClass: 'btn-primary btn-sm',
+        confirmButtonText: 'OK',
+      });
+      sessionStorage.removeItem('updated');
+    }
+
+  });
+</script>
+
+{% endblock content %}

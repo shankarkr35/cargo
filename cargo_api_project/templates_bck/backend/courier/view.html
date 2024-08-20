@@ -1,0 +1,144 @@
+{% extends 'backend/base.html' %}
+{% block content %}
+<style>
+  .list_doc{
+    list-style: none;
+    color: #000;
+    font-weight: 700;
+    display: list-item;
+    text-align: -webkit-match-parent;
+    padding:10px;
+  }
+  .list-item{
+    padding:10px;
+
+  }
+  .file{
+    color:red;
+  }
+</style>
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6"> 
+            <h1>Dashboard</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="/auth/admin-dashboard/">Home</a></li>
+              <li class="breadcrumb-item active"><a href="{% url 'courier-management' %}">Courier List</a></li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card card-danger">
+              <div class="card-header">
+                <h3 class="card-title">Courier Comapany Details</h3>
+            <form enctype="multipart/form-data" method="POST" class="uform">
+              </div>
+                <div class="card-body">
+                
+                {% csrf_token %}
+                    <input type="hidden" name="csrfmiddlewaretoken" value="">
+                    
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Name :</label>
+                    <input type="text" class="form-control" id="name" placeholder="Name.*" value="{{list.fullname}}" readonly>
+                    <span class="font-weight-bold" style="color:white;" id="name-err"></span>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Email :</label>
+                    <input type="text" class="form-control" id="email" placeholder="Email.*" value="{{list.email}}" readonly>
+                    <span class="text-danger font-weight-bold" id="email-err"></span>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Country Code :</label>
+                    <input type="text" class="form-control" id="country_code" placeholder="Enter Country Code.*" value="{{list.country_code}}" readonly>
+                    <span class="text-danger font-weight-bold" id="country_code-err"></span>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Phone :</label>
+                    <input type="number" class="form-control" id="phone" placeholder="Phone.*" maxlength="8" value="{{list.phone}}" readonly>
+                    <span class="text-danger font-weight-bold" id="phone-err"></span>
+                  </div>
+                  <div class="form-group" style="display:none;">
+                    <label for="exampleInputEmail1">Password :</label>
+                    <input type="text" class="form-control" id="password" placeholder="Password.*" value="{{list.password}}"></textarea>
+                    <span class="text-danger font-weight-bold" id="password-err"></span>
+                  </div>
+                  <h4>Documents Section</h4>
+                  <hr>
+                  <div class="form-group">
+                    <ul>
+                      {% if list.courier_certificate %}
+                      <li class="list_doc"><i class="fas fa-file file"></i><span class="list-item"><a href="{{MEDIA_URL}}{{list.courier_certificate.url}}" download>Company Gov. Certificate</a></span></li>
+                      {% else %}
+                      <li class="list_doc"><i class="fas fa-file file"></i><span class="list-item"> Not Uploaded</span></li>
+                      {% endif %}
+                      {% if list.courier_file1 %}
+                      <li class="list_doc"><i class="fas fa-file file"></i><span class="list-item"><a href="{{MEDIA_URL}}{{list.courier_file1.url}}" download>Courier File-1</a></span></li>
+                      {% else %}
+                      <li class="list_doc"><i class="fas fa-file file"></i><span class="list-item"> Not Uploaded</span></li>
+                      {% endif %}
+                      {% if list.courier_file2 %}
+                      <li class="list_doc"><i class="fas fa-file file"></i><span class="list-item"><a href="{{MEDIA_URL}}{{list.courier_file2.url}}" download>Courier File-2</a></span></li>
+                      {% else %}
+                      <li class="list_doc"><i class="fas fa-file file"></i><span class="list-item"> Not Uploaded</span></li>
+                      {% endif %}
+                      {% if list.courier_file3 %}
+                      <li class="list_doc"><i class="fas fa-file file"></i><span class="list-item"><a href="{{MEDIA_URL}}{{list.courier_file3.url}}" download>Courier File-3</a></span></li>
+                      {% else %}
+                      <li class="list_doc"><i class="fas fa-file file"></i><span class="list-item"> Not Uploaded</span></li>
+                      {% endif %}
+                      {% if list.contract_file %}
+                      <li class="list_doc"><i class="fas fa-file file"></i><span class="list-item"><a href="{{MEDIA_URL}}{{list.contract_file.url}}" download>Contract File</a></span></li>
+                      {% else %}
+                      <li class="list_doc"><i class="fas fa-file file"></i><span class="list-item"> Not Uploaded</span></li>
+                      {% endif %}
+                    </ul>
+                  </div>
+                  <div class="form-group d-none">
+                    <label for="exampleInputFile">Document :</label>
+                    <div class="white-box">
+                      {% if list.courier_certificate %}
+                      <embed src="{{ MEDIA_URL }}{{list.courier_certificate.url}}" width="100%" height="600px" />
+                      <object data="{{ MEDIA_URL }}{{list.courier_certificate.url}}" width="800" height="500"></object>
+                      
+                      {% else %}
+                      <image src="/static/default.png" style="height:400px; width:500px;">
+                      {% endif %}
+                    </div>
+                    <br><br>
+                    <span>
+                      <a href="{{MEDIA_URL}}{{list.courier_certificate.url}}" class="btn btn-info" download>
+                        Download
+                        {% comment %} <img src="path/to/image.jpg" alt="Image"> {% endcomment %}
+                      </a>
+                    </span>
+                  </div>
+                  
+                  
+                </div>
+                
+            </div>
+            </form>
+          </div>
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  
+{% endblock content %}

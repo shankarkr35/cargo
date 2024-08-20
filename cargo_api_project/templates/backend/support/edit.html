@@ -1,0 +1,224 @@
+{% extends 'backend/base.html' %}
+{% block content %}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6"> 
+            <h1>Dashboard</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="/auth/admin-dashboard/">Home</a></li>
+              <li class="breadcrumb-item active"><a href="{% url 'support-management' %}">Support Management</a></li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card card-danger">
+              <div class="card-header">
+                <h3 class="card-title">Support Management</h3>
+            <form enctype="multipart/form-data" method="POST" class="uform">
+              </div>
+                
+                <div class="card-body">
+                
+                {% csrf_token %}
+                  <input type="hidden" name="csrfmiddlewaretoken" value="">
+                   
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Email :</label>
+                    <input type="text" class="form-control" id="email" placeholder="Email.*" value="{{list.email}}">
+                    <span class="text-danger font-weight-bold" id="email-err"></span>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Phone :</label>
+                    <input type="text" class="form-control" id="phone" placeholder="Phone .*" value="{{list.phone}}">
+                    <span class="text-danger font-weight-bold" id="phone-err"></span>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Address :</label>
+                    <input type="text" class="form-control" id="address" placeholder="Address.*" value="{{list.address}}">
+                    <span class="text-danger font-weight-bold" id="address-err"></span>
+                  </div>
+                  <div class="form-group ">
+                    <label for="exampleInputEmail1">Facebook URL:</label>
+                    <input type="text" class="form-control" id="facebook" placeholder="Facebook URL.*" value="{{list.facebook_url}}">
+                    <span class="text-danger font-weight-bold" id="facebook-err"></span>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Instagram URL:</label>
+                    <input type="text" class="form-control" id="instagram" placeholder="Instagram URL.*" value="{{list.instagram_url}}">
+                    <span class="text-danger font-weight-bold" id="instagram-err"></span>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Youtube URL:</label>
+                    <input type="text" class="form-control" id="youtube" placeholder="Youtube URL.*" value="{{list.youtube_url}}">
+                    <span class="text-danger font-weight-bold" id="youtube-err"></span>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Twitter URL:</label>
+                    <input type="text" class="form-control" id="twitter" placeholder="Twitter URL.*" value="{{list.twitter_url}}">
+                    <span class="text-danger font-weight-bold" id="twitter-err"></span>
+                  </div>
+                  <div class="form-group d-none">
+                    <label for="exampleInputEmail1">WhatsApp URL:</label>
+                    <input type="text" class="form-control" id="whatsapp" placeholder="WhatsApp URL.*" value="{% if list and list.whatsapp_url %}{{ list.whatsapp_url }}{% endif %}">
+                    <span class="text-danger font-weight-bold" id="whatsapp-err"></span>
+                  </div>
+                  
+                </div>
+                
+                <div class="card-footer" id="save-btn-conatiner">
+                  <button type="button" class="btn btn-danger" id="save-btn-custom">Save</button>
+                </div>
+            </div>
+            </form>
+          </div>
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  
+<script>
+    document.querySelectorAll('input[type="number"]').forEach(input=>{
+        input.oninput = () =>{
+            if(input.value.length > input.maxLength) input.value = input.value.slice(0,input.maxLength);
+        }
+    })
+</script>   
+<script>
+    $(document).ready(function() 
+    {
+        $('.dropify').dropify();
+    });
+
+    $(function () {
+        $('#description').summernote({
+          height: 200,
+        });
+        
+        $('#description_ar').summernote('justifyRight');
+      });
+</script>
+<script>
+    $(document).ready(function(){
+        $(document).on('click','#save-btn-custom',function(){
+          const reg_email = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
+            var email = $('#email').val();
+            var phone = $('#phone').val();
+            var address = $('#address').val();
+            var facebook_url = $('#facebook').val();
+            var instagram_url = $('#instagram').val();
+            var twitter_url = $('#twitter').val();
+            var youtube_url = $('#youtube').val();
+            var whatsapp_url = $('#whatsapp').val();
+
+            if(email=="")
+            {
+                $('#email').addClass('is-invalid');
+                $('#email-err').text('Enter Email.*');
+            }else{
+                $('#email').removeClass('is-invalid');
+                $('#email-err').text('');
+            }
+            if(phone=="")
+            {
+                $('#phone').addClass('is-invalid');
+                $('#phone-err').text('Enter Phone.*');
+            }else{
+                $('#phone').removeClass('is-invalid');
+                $('#phone-err').text('');
+            }
+            if(address=="")
+            {
+                $('#address').addClass('is-invalid');
+                $('#address-err').text('Enter Address.*');
+            }else{
+                $('#address').removeClass('is-invalid');
+                $('#address-err').text('');
+            }
+            
+            if(email!="" && phone!="" &&address!="")
+            {
+                var fd  = new FormData();
+                
+                fd.append('email',email);
+                fd.append('phone',phone);
+                fd.append('address',address);
+          
+                fd.append('facebook_url',facebook_url);
+                fd.append('instagram_url',instagram_url);
+                fd.append('twitter_url',twitter_url);
+                fd.append('youtube_url',youtube_url);
+                fd.append('whatsapp_url',whatsapp_url);
+                
+                fd.append('id',"{{list.id}}");
+                
+                fd.append('csrfmiddlewaretoken',$('input[name="csrfmiddlewaretoken"]').val())
+                $.ajax({
+                    url: '/auth/update-support/',
+                    method: "POST",
+                    data: fd,
+                    contentType: false,
+                    processData: false,
+                    //dataType: "JSON",
+                    beforeSend: function(){
+                    $('#title').removeClass('is-invalid');
+                    $('#title-err').text('');
+                    
+                    $("#save-btn-conatiner").html('<div class="spinner-border text-danger text-right"></div>');
+                   },
+                    success: function(data) {
+                        console.log(data)
+                      if ((data != null) && (data.msg == 'Updated')) 
+                      {
+                        sessionStorage.setItem('updated',true);
+                        window.location.href = '/auth/support-management/';
+                      } 
+                    },complete:function(data){
+                     $("#save-btn-conatiner").html('<button type="button" class="btn btn-danger" id="save-btn-custom">Save</button>');
+                   }
+                });
+            }
+
+        })
+    })
+</script>
+<script>
+  $(function () {
+    if (sessionStorage.getItem('updated')) {
+      swal({
+        title: 'Data Updated.',
+        text: 'Data Details updated successfully.!',
+        type: 'success',
+        confirmButtonClass: 'btn-primary btn-sm',
+        confirmButtonText: 'OK',
+      });
+      sessionStorage.removeItem('updated');
+    }
+
+  });
+</script>
+<script>
+    $(document).ready(function() 
+    {
+        $('.dropify').dropify();
+        $('.select2').select2();
+        $('.select2bs4').select2({
+        theme: 'bootstrap4'
+        });
+    });
+</script>
+
+{% endblock content %}

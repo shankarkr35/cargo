@@ -1,0 +1,170 @@
+{% extends 'courier/base.html' %}
+{% block content %}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6"> 
+            <h1>Dashboard</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="/courier-dashboard/">Home</a></li>
+              <li class="breadcrumb-item active"><a href="/courier/delivery-charge-management/">Delivery Charge List</a></li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card card-danger">
+              <div class="card-header">
+                <h3 class="card-title">Edit Delivery Charge</h3>
+            <form enctype="multipart/form-data" method="POST" class="uform">
+              </div>
+                <div class="card-body">
+                
+                {% csrf_token %}
+                  <input type="hidden" name="csrfmiddlewaretoken" value="">
+                  
+                  <div class="form-group">
+                    <label for="start_distance">Start Distance:</label>
+                    <input type="number" class="form-control" value="{{list.start_distance}}" id="start_distance" min="0" step="1" placeholder="Enter Start Distance.*" maxlength="5">
+                    <span class="text-danger font-weight-bold" id="start_distance-err"></span>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">End Distence :</label>
+                    <input type="number" class="form-control" value="{{list.end_distance}}" id="end_distance" placeholder="Enter Start Distence.*"  min="0" step="1" maxlength="5">
+                    <span class="text-danger font-weight-bold" id="end_distance-err"></span>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Delivery Charge :</label>
+                    <input type="text" class="form-control" id="delivery_charge" placeholder="Color.*" value="{{list.delivery_charge}}">
+                    <span class="text-danger font-weight-bold" id="delivery_charge-err"></span>
+                  </div>
+                </div>
+                <div class="card-footer" id="save-btn-conatiner">
+                  <button type="button" class="btn btn-danger" id="save-btn-custom">Save</button>
+                </div>
+            </div>
+            </form>
+          </div>
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+
+<script>
+    $(document).ready(function() 
+    {
+        $('.dropify').dropify();
+    });
+
+    $(function () {
+        $('#description').summernote({
+          height: 200,
+        });
+        
+        $('#arpostDescription').summernote('justifyRight');
+      });
+</script>
+<script>
+    $(document).ready(function(){
+        $(document).on('click','#save-btn-custom',function(){
+          const reg_email = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
+          var start_distance = $('#start_distance').val();
+            var end_distance = $('#end_distance').val();
+            var delivery_charge = $('#delivery_charge').val();
+           
+            if(start_distance=="")
+            {
+                $('#start_distance').addClass('is-invalid');
+                $('#start_distance-err').text('Enter Start Distance.*').css({"color":"red","font-weight":"bold"}).fadeIn(1000).delay(3000).fadeOut("slow");
+            }else{
+                $('#start_distance').removeClass('is-invalid');
+                $('#start_distance-err').text('');
+            }
+            if(end_distance=="")
+            {
+                $('#end_distance').addClass('is-invalid');
+                $('#end_distance-err').text('Enter End Distance.*').css({"color":"red","font-weight":"bold"}).fadeIn(1000).delay(3000).fadeOut("slow");
+            }else{
+                $('#end_distance').removeClass('is-invalid');
+                $('#end_distance-err').text('');
+            }
+            if(delivery_charge=="")
+            {
+                $('#delivery_charge').addClass('is-invalid');
+                $('#delivery_charge-err').text('Enter delivery charge.*').css({"color":"red","font-weight":"bold"}).fadeIn(1000).delay(3000).fadeOut("slow");
+            }else{
+                $('#delivery_charge').removeClass('is-invalid');
+                $('#delivery_charge-err').text('');
+            }
+           
+            
+            if(start_distance!="" && end_distance!="" && delivery_charge!="")
+            {
+                var fd = new FormData();
+                
+                fd.append('start_distance',start_distance);
+                fd.append('end_distance',end_distance);
+                fd.append('delivery_charge',delivery_charge);
+                fd.append('id','{{list.id}}');
+                
+                
+                fd.append('csrfmiddlewaretoken',$('input[name="csrfmiddlewaretoken"]').val())
+                $.ajax({
+                    url: '/courier/update-charge/',
+                    method: "POST",
+                    data: fd,
+                    contentType: false,
+                    processData: false,
+                    //dataType: "JSON",
+                    beforeSend: function(){
+                      $('#start_distance').removeClass('is-invalid');
+                      $('#start_distance-err').text('');
+                    
+                    $("#save-btn-conatiner").html('<div class="spinner-border text-danger text-right"></div>');
+                   },
+                    success: function(data) {
+                        console.log(data) 
+                      if ((data != null) && (data.msg == 'Updated')) 
+                      {
+                        sessionStorage.setItem('updated',true);
+                        window.location.href = '/courier/delivery-charge-management/';
+                      } else if((data != null) && (data.msg == 'already exist')) {
+                        $('#start_distance').addClass('is-invalid');
+                        $('#start_distance-err').text('This Range Already Exist.*');
+                      }
+                      
+                    },complete:function(data){
+                     $("#save-btn-conatiner").html('<button type="button" class="btn btn-danger" id="save-btn-custom">Save</button>');
+                   }
+                });
+            }
+
+        })
+    })
+</script>
+<script>
+    $(document).ready(function() 
+    {
+        $('.dropify').dropify();
+        $('.select2').select2();
+        $('.select2bs4').select2({
+        theme: 'bootstrap4'
+        });
+    });
+</script>
+
+{% endblock content %}

@@ -1,0 +1,92 @@
+
+{% block content %}
+{% load %}
+
+<!-- Your sidebar HTML code -->
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="/courier-dashboard/" class="brand-link">
+      <img src="/static/assets/admin/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light">Cargo </span>
+    </a>
+ 
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="/static/assets/front/front-end/images/logo.jpeg" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <a href="/courier-dashboard/" class="d-block">Cargo-Service</a>
+        </div>
+      </div>
+
+      <!-- SidebarSearch Form -->
+      <div class="form-inline">
+        <div class="input-group" data-widget="sidebar-search">
+          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+          <div class="input-group-append">
+            <button class="btn btn-sidebar">
+              <i class="fas fa-search fa-fw"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item menu-open">
+            <a href="{% url 'courier-dashboard' %}" class="nav-link {% if request.path == '/courier-dashboard/' %} active {% endif %}">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Dashboard
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a href="/courier/driver-management/" class="nav-link {% if request.path == '/courier/driver-management/' or request.path == '/courier/add-driver/' or request.path|slice:'-2' == '/courier/edit-driver/' or request.path|slice:'-1' == '/courier/driver-orders-management/' %} active {% endif %}">
+              <i class="nav-icon far fa-user"></i>
+              <p>
+                Driver
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/courier/vehicle-management/" class="nav-link {% if request.path == '/courier/vehicle-management/' or request.path == '/courier/add-vehicle/' or request.path|slice:'-2' == '/courier/edit-vehicle' %} active {% endif %}">
+              <i class="nav-icon far fa-user"></i>
+              <p>
+                Vehicles
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/courier/orders-management/" class="nav-link {% if request.path == '/courier/orders-management/'  %} active {% endif %}">
+              <i class="nav-icon fas fa-shipping-fast"></i>
+              <p>
+                Orders
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/courier/delivery-charge-management/" class="nav-link {% if request.path == '/courier/delivery-charge-management/' or request.path == '/courier/add-delivery-charge/' or request.path|slice:'-2' == '/courier/edit-delivery-charge/'  %} active {% endif %}">
+              <i class="nav-icon fas fa-shipping-fast"></i>
+              <p>
+                Delivery Charge
+              </p>
+            </a>
+          </li>
+         
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+  {% endblock content %}

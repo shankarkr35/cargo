@@ -1,0 +1,366 @@
+{% extends 'backend/base.html' %}
+{% block content %}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6"> 
+            <h1>Dashboard</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="/auth/admin-dashboard/">Home</a></li>
+              <li class="breadcrumb-item active"><a href="{% url 'courier-management' %}">Courier List</a></li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card card-danger">
+              <div class="card-header">
+                <h3 class="card-title">Edit Courier Comapany</h3>
+            <form enctype="multipart/form-data" method="POST" class="uform">
+              </div>
+                <div class="card-body">
+                
+                {% csrf_token %}
+                    <input type="hidden" name="csrfmiddlewaretoken" value="">
+                    
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Name :</label>
+                    <input type="text" class="form-control" id="name" placeholder="Name.*" value="{{list.fullname}}">
+                    <span class="font-weight-bold" style="color:white;" id="name-err"></span>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Email :</label>
+                    <input type="text" class="form-control" id="email" placeholder="Email.*" value="{{list.email}}">
+                    <span class="text-danger font-weight-bold" id="email-err"></span>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Country Code :</label>
+                    <input type="text" class="form-control" id="country_code" placeholder="Enter Country Code.*" value="{{list.country_code}}">
+                    <span class="text-danger font-weight-bold" id="country_code-err"></span>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Phone :</label>
+                    <input type="number" class="form-control" id="phone" placeholder="Phone.*" maxlength="8" value="{{list.phone}}">
+                    <span class="text-danger font-weight-bold" id="phone-err"></span>
+                  </div>
+                  <div class="form-group" style="display:none;">
+                    <label for="exampleInputEmail1">Password :</label>
+                    <input type="text" class="form-control" id="password" placeholder="Password.*" value="{{list.password}}"></textarea>
+                    <span class="text-danger font-weight-bold" id="password-err"></span>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Supplier Code :</label>
+                    <input type="number" class="form-control" id="supplier_code" placeholder="Supplier Code.*"  value="{{list.supplier_code}}" readonly>
+                    <span class="text-danger font-weight-bold" id="supplier_code-err"></span>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="mb-3">
+                        <label class="form-label">Commercial License</label>
+                        <div class="white-box">
+                          {% if list.courier_certificate %}
+                          <input type="file" id="file" name="file" class="dropify" data-default-file="{{MEDIA_URL}}{{list.courier_certificate.url}}" /> 
+                          {% else %}
+                          <input type="file" id="file" name="file" class="dropify" data-default-file="" />
+                          {% endif %}
+                          
+                        </div>
+                        <span class="font-weight-bold" style="color:white;" id="file-err"></span>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="mb-3">
+                        <label class="form-label">Signature Autherization</label>
+                        <div class="white-box">
+                          {% if list.courier_file1 %}
+                          <input type="file" id="file1" name="file1" class="dropify" data-default-file="{{MEDIA_URL}}{{list.courier_file1.url}}" /> 
+                          {% else %}
+                          <input type="file" id="file1" name="file1" class="dropify" data-default-file="" />
+                          {% endif %}
+                        </div>
+                        <span class="font-weight-bold" style="color:white;" id="file1-err"></span>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="mb-3">
+                        <label class="form-label">Commercial Register</label>
+                        <div class="white-box">
+                          {% if list.courier_file2 %}
+                          <input type="file" id="file2" name="file2" class="dropify" data-default-file="{{MEDIA_URL}}{{list.courier_file2.url}}" /> 
+                          {% else %}
+                          <input type="file" id="file2" name="file2" class="dropify" data-default-file="" />
+                          {% endif %}
+                          
+                        </div>
+                        <span class="font-weight-bold" style="color:white;" id="file2-err"></span>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="mb-3">
+                        <label class="form-label">Civil Id Of Manager</label>
+                        <div class="white-box">
+                          {% if list.courier_file3 %}
+                          <input type="file" id="file3" name="file3" class="dropify" data-default-file="{{MEDIA_URL}}{{list.courier_file3.url}}" /> 
+                          {% else %}
+                          <input type="file" id="file3" name="file3" class="dropify" data-default-file="" />
+                          {% endif %}
+           
+                        </div>
+                        <span class="font-weight-bold" style="color:white;" id="file3-err"></span>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="mb-3">
+                        <label class="form-label">Three Party Contract Agreement</label>
+                        <div class="white-box">
+                          {% if list.contract_file %}
+                          <input type="file" id="file4" name="file4" class="dropify" data-default-file="{{MEDIA_URL}}{{list.contract_file.url}}" /> 
+                          {% else %}
+                          <input type="file" id="file4" name="file4" class="dropify" data-default-file="" />
+                          {% endif %}
+                           
+                        </div>
+                        <span class="font-weight-bold" style="color:white;" id="file4-err"></span>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                          <label class="form-label">Civil Id Of All Owners</label>
+                          <div class="white-box">
+                            {% if list.owners_civil_id %}
+                            <input type="file" id="file5" name="file5" class="dropify" data-default-file="{{MEDIA_URL}}{{list.owners_civil_id.url}}" /> 
+                            {% else %}
+                            <input type="file" id="file5" name="file5" class="dropify" data-default-file="" />
+                            {% endif %}
+                             
+                          </div>
+                          <span class="font-weight-bold" style="color:white;" id="file5-err"></span>
+                        </div>
+                    </div>
+                  
+                  
+                </div>
+                <div class="card-footer" id="save-btn-conatiner">
+                  <button type="button" class="btn btn-danger" id="save-btn-custom">Save</button>
+                </div>
+            </div>
+            </form>
+          </div>
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+   
+<script>
+    document.querySelectorAll('input[type="number"]').forEach(input=>{
+        input.oninput = () =>{
+            if(input.value.length > input.maxLength) input.value = input.value.slice(0,input.maxLength);
+        }
+    })
+</script>   
+<script>
+    $(document).ready(function() 
+    {
+        $('.dropify').dropify();
+    });
+
+    $(function () {
+        $('#description').summernote({
+          height: 200,
+        });
+        
+        $('#arpostDescription').summernote('justifyRight');
+      });
+</script>
+<script>
+    $(document).ready(function(){
+        $(document).on('click','#save-btn-custom',function(){
+          const reg_email = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
+          const reg_password = /[!@#$%^&*()\-_=+{};:,<.>]/;
+          var name = $('#name').val();
+          var email = $('#email').val();
+          var phone = $('#phone').val();
+          var country_code = $('#country_code').val();
+          var password = $('#password').val();
+          
+          var files = $('#file').dropify().data('dropify').file;
+          var files1 = $('#file1').data('dropify').file;
+          var files2 = $('#file2').data('dropify').file;
+          var files3 = $('#file3').data('dropify').file;
+          var files4 = $('#file4').data('dropify').file;
+         
+          
+          if(name=="")
+          {
+              $('#name').addClass('is-invalid');
+              $('#name-err').text('Enter Full Name.*').css({"color":"white","font-weight":"bold"}).fadeIn(1000).delay(2000).fadeOut("slow");
+          }else{
+              $('#name').removeClass('is-invalid');
+              $('#name-err').text('');
+          }
+          
+          if(email=="")
+          {
+              $('#email').addClass('is-invalid');
+              $('#email-err').text('Enter User Email.*').css({"color":"white","font-weight":"bold"}).fadeIn(1000).delay(2000).fadeOut("slow");
+              
+          }else if(!reg_email.test(email)){
+            $('#email').addClass('is-invalid'); 
+            $('#email-err').text('Enter valid email address.*').css({"color":"white","font-weight":"bold"}).fadeIn(1000).delay(2000).fadeOut("slow");
+               
+          }else{
+              $('#email').removeClass('is-invalid');
+              $('#email-err').text('');
+          }
+          if(phone=="")
+          {
+              $('#phone').addClass('is-invalid');
+              $('#phone-err').text('Enter User Phone.*').css({"color":"white","font-weight":"bold"}).fadeIn(1000).delay(2000).fadeOut("slow");
+          }else if(phone.length!=8){
+              $('#phone').addClass('is-invalid');
+              $('#phone-err').text('Enter 8 Digit Phone.*').css({"color":"white","font-weight":"bold"}).fadeIn(1000).delay(2000).fadeOut("slow");
+          }else{
+              $('#phone').removeClass('is-invalid');
+              $('#phone-err').text('');
+          }
+          if(country_code=="")
+          {
+              $('#country_code').addClass('is-invalid');
+              $('#country_code-err').text('Enter Country Code.*').css({"color":"white","font-weight":"bold"}).fadeIn(1000).delay(2000).fadeOut("slow");
+          }else{
+              $('#country_code').removeClass('is-invalid');
+              $('#country_code-err').text('');
+          }
+          if(password=="")
+          {
+              $('#password').addClass('is-invalid');
+              $('#password-err').text('Enter Password.*').css({"color":"white","font-weight":"bold"}).fadeIn(1000).delay(2000).fadeOut("slow");
+          }else if(password.length < 8){
+              $('#password').addClass('is-invalid');
+              $('#password-err').text('Pasword should be greater than 8 digit.*').css({"color":"white","font-weight":"bold"}).fadeIn(1000).delay(2000).fadeOut("slow");    
+          }else if (!reg_password.test(password)) {
+              $('#password').addClass('is-invalid');
+              $('#password-err').text('Password should contain at least one special character.*').css({"color":"white","font-weight":"bold"}).fadeIn(1000).delay(2000).fadeOut("slow");
+          } else{
+              $('#password').removeClass('is-invalid');
+              $('#password-err').text('');
+          }
+          if(files==undefined || files.name==null)
+          {
+              $('#file').addClass('is-invalid');
+              $('#file-err').text('Please Upload Gov. Certificate.*').css({"color":"red","font-weight":"bold"}).fadeIn(1000).delay(2000).fadeOut("slow");
+          }else{
+              $('#file').removeClass('is-invalid');
+              $('#file-err').text('');
+          }
+          if(files1==undefined || files1.name==null)
+          {
+              $('#file1').addClass('is-invalid');
+              $('#file1-err').text('Please Upload File-1.*').css({"color":"red","font-weight":"bold"}).fadeIn(1000).delay(2000).fadeOut("slow");
+          }else{
+              $('#file1').removeClass('is-invalid');
+              $('#file1-err').text('');
+          }
+          if(files2==undefined || files2.name==null)
+          {
+              $('#file2').addClass('is-invalid');
+              $('#file2-err').text('Please Upload File-2.*').css({"color":"red","font-weight":"bold"}).fadeIn(1000).delay(2000).fadeOut("slow");
+          }else{
+              $('#file2').removeClass('is-invalid');
+              $('#file2-err').text('');
+          }
+          
+          if(files3==undefined || files3.name==null)
+          {
+              $('#file3').addClass('is-invalid');
+              $('#file3-err').text('Please Upload File-3.*').css({"color":"red","font-weight":"bold"}).fadeIn(1000).delay(2000).fadeOut("slow");
+          }else{
+              $('#file3').removeClass('is-invalid');
+              $('#file3-err').text('');
+          }
+          
+          if(name!="" && files!=undefined && files1!=undefined && files.name!=null && files1!='' && files1.name!=null && files2!=undefined && files2!=''&& files2.name!=null && files3!=undefined && files3!=''&& files3.name!=null &&email!="" &&reg_email.test(email) && phone!="" && phone.length==8 && password!="" && reg_password.test(password) &&password.length>=8 && country_code!="")
+          {
+            
+              var fd = new FormData();
+
+              fd.append('files',$('#file')[0].files[0]);
+              fd.append('files1',$('#file1')[0].files[0]);
+              fd.append('files2',$('#file2')[0].files[0]);
+              fd.append('files3',$('#file3')[0].files[0]);
+              fd.append('files4',$('#file4')[0].files[0]);
+              fd.append('files5',$('#file5')[0].files[0]);
+              fd.append('name',name);
+              fd.append('email',email);
+              fd.append('phone',phone);
+              fd.append('country_code',country_code);
+              fd.append('password',password);
+              fd.append('id',"{{list.id}}");
+              fd.append('csrfmiddlewaretoken',$('input[name="csrfmiddlewaretoken"]').val())
+                $.ajax({
+                    url: '/auth/update-courier/',
+                    method: "POST",
+                    data: fd,
+                    contentType: false,
+                    processData: false,
+                    //dataType: "JSON",
+                    beforeSend: function(){
+                    $('#title').removeClass('is-invalid');
+                    $('#title-err').text('');
+                    
+                    $("#save-btn-conatiner").html('<div class="spinner-border text-danger text-right"></div>');
+                   },
+                    success: function(data) {
+                        console.log(data)
+                      if ((data != null) && (data.msg == 'Updated')) 
+                      {
+                        sessionStorage.setItem('updated',true);
+                        window.location.href = '/auth/courier-management/';
+                      }  else if((data != null) && (data.msg == 'already exist')) {
+                        $('#email').addClass('is-invalid');
+                        $('#email-err').text('Email already Exist.*').css({"color":"red","font-weight":"bold"}).fadeIn(1000).delay(2000).fadeOut("slow");
+                      }
+                      else if((data != null) && (data.msg == 'name already exist')) {
+                        $('#name').addClass('is-invalid');
+                        $('#name-err').text('Company Name already Exist.*').css({"color":"red","font-weight":"bold"}).fadeIn(1000).delay(2000).fadeOut("slow");
+                      }
+                      else if((data != null) && (data.msg == 'Not Added')) {
+                        $('#name').addClass('is-invalid');
+                        $('#name-err').text('Data not added.*').css({"color":"red","font-weight":"bold"}).fadeIn(1000).delay(2000).fadeOut("slow");
+                      }
+                    },complete:function(data){
+                     $("#save-btn-conatiner").html('<button type="button" class="btn btn-danger" id="save-btn-custom">Save</button>');
+                   }
+                });
+            }
+
+        })
+    })
+</script>
+
+<script>
+    $(document).ready(function() 
+    {
+        $('.dropify').dropify();
+        $('.select2').select2();
+        $('.select2bs4').select2({
+        theme: 'bootstrap4'
+        });
+    });
+</script>
+
+{% endblock content %}

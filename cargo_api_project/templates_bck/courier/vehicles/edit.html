@@ -1,0 +1,201 @@
+{% extends 'courier/base.html' %}
+{% block content %}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6"> 
+            <h1>Dashboard</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="<?php echo base_url('admin-dashboard')?>">Home</a></li>
+              <li class="breadcrumb-item active"><a href="{% url 'driver-management' %}">Driver List</a></li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card card-danger">
+              <div class="card-header">
+                <h3 class="card-title">New Driver</h3>
+            <form enctype="multipart/form-data" method="POST" class="uform">
+              </div>
+                <div class="card-body">
+                
+                {% csrf_token %}
+                  <input type="hidden" name="csrfmiddlewaretoken" value="">
+                  
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Driver :</label>
+                    <select class="form-control" name="driver" id="driver">
+                      <option value="">--Select Driver--</option>
+                      {% for driver in drivers %}
+                      <option value="{{driver.id}}" {% if list.driver_id == driver.id %} selected {% endif %}>{{driver.name}}</option>
+                      {% endfor %}
+                    </select>
+                    <span class="text-danger font-weight-bold" id="driver-err"></span>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Vehicle Type :</label>
+                    <select class="form-control" name="vehicle_type" id="vehicle_type">
+                      <option value="">--Select Type--</option>
+                      
+                      {% for vehicle_type in vehicle_types %}
+                      <option value="{{vehicle_type.id}}" {% if list.vehicle_type_id == vehicle_type.id %} selected {% endif %}>{{vehicle_type.title}}</option>
+                      {% endfor %}
+                    </select>
+                    <span class="text-danger font-weight-bold" id="vehicle_type-err"></span>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Color :</label>
+                    <input type="text" class="form-control" id="color" placeholder="Color.*" value="{{list.color}}">
+                    <span class="text-danger font-weight-bold" id="color-err"></span>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Vehicle Number :</label>
+                    <input type="text" class="form-control" id="vehicle_number" placeholder="Vehicle Number.*" value="{{list.vehicle_number}}">
+                    <span class="text-danger font-weight-bold" id="vehicle_number-err"></span>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="exampleInputFile">Image :</label>
+                    <div class="white-box">
+                        {% if list.image %}
+                        <input type="file" id="file" name="file" class="dropify" data-default-file="{{MEDIA_URL}}{{list.image.url}}" /> 
+                        {% else %}
+                        <input type="file" id="file" name="file" class="dropify" data-default-file="/static/default.png" />
+                        {% endif %}
+                    </div>
+                  </div>
+                  
+                </div>
+                <div class="card-footer" id="save-btn-conatiner">
+                  <button type="button" class="btn btn-danger" id="save-btn-custom">Save</button>
+                </div>
+            </div>
+            </form>
+          </div>
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+   
+<script>
+    document.querySelectorAll('input[type="number"]').forEach(input=>{
+        input.oninput = () =>{
+            if(input.value.length > input.maxLength) input.value = input.value.slice(0,input.maxLength);
+        }
+    })
+</script>   
+<script>
+    $(document).ready(function() 
+    {
+        $('.dropify').dropify();
+    });
+
+    $(function () {
+        $('#description').summernote({
+          height: 200,
+        });
+        
+        $('#arpostDescription').summernote('justifyRight');
+      });
+</script>
+<script>
+    $(document).ready(function(){
+        $(document).on('click','#save-btn-custom',function(){
+          const reg_email = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
+            var driver = $('#driver').val();
+            var vehicle_type = $('#vehicle_type').val();
+            var color = $('#color').val();
+            var vehicle_number = $('#vehicle_number').val();
+            var files = $('#file')[0].files[0];
+
+            if(vehicle_type=="")
+            {
+                $('#nvehicle_typeame').addClass('is-invalid');
+                $('#vehicle_type-err').text('Enter vehicle type.*').css({"color":"red","font-weight":"bold"}).fadeIn(1000).delay(3000).fadeOut("slow");
+            }else{
+                $('#vehicle_type').removeClass('is-invalid');
+                $('#vehicle_type-err').text('');
+            }
+           
+            if(vehicle_number=="")
+            {
+                $('#vehicle_number').addClass('is-invalid');
+                $('#vehicle_number-err').text('Enter vehicle number.*').css({"color":"red","font-weight":"bold"}).fadeIn(1000).delay(3000).fadeOut("slow");
+            }else{
+                $('#vehicle_number').removeClass('is-invalid');
+                $('#vehicle_number-err').text('');
+            }
+            if(vehicle_number!=""  && vehicle_type!="" )
+            {
+                var fd = new FormData();
+                var files = $('#file')[0].files[0];
+                
+                fd.append('files',files);
+                fd.append('vehicle_number',vehicle_number);
+                fd.append('vehicle_type',vehicle_type);
+                fd.append('color',color);
+                fd.append('driver',driver);
+                fd.append('id','{{list.id}}'); 
+                
+                
+                fd.append('csrfmiddlewaretoken',$('input[name="csrfmiddlewaretoken"]').val())
+                $.ajax({
+                    url: '/courier/update-vehicle/',
+                    method: "POST",
+                    data: fd,
+                    contentType: false,
+                    processData: false,
+                    //dataType: "JSON",
+                    beforeSend: function(){
+                    $('#title').removeClass('is-invalid');
+                    $('#title-err').text('');
+                    
+                    $("#save-btn-conatiner").html('<div class="spinner-border text-danger text-right"></div>');
+                   },
+                    success: function(data) {
+                        console.log(data)
+                      if ((data != null) && (data.msg == 'Updated')) 
+                      {
+                        sessionStorage.setItem('updated',true);
+                        window.location.href = '/courier/vehicle-management/';
+                      } else if((data != null) && (data.msg == 'already exist')) {
+                        $('#vehicle_number').addClass('is-invalid');
+                        $('#vehicle_number-err').text('Vehicle number already Exist.*');
+                      }
+                      
+                    },complete:function(data){
+                     $("#save-btn-conatiner").html('<button type="button" class="btn btn-danger" id="save-btn-custom">Save</button>');
+                   }
+                });
+            }
+
+        })
+    })
+</script>
+<script>
+    $(document).ready(function() 
+    {
+        $('.dropify').dropify();
+        $('.select2').select2();
+        $('.select2bs4').select2({
+        theme: 'bootstrap4'
+        });
+    });
+</script>
+
+{% endblock content %}

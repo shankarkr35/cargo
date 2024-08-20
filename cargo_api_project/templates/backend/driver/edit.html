@@ -1,0 +1,510 @@
+{% extends 'backend/base.html' %}
+{% block content %}
+<style>
+  #map {
+     height: 350px;
+     width: 100%;
+  }
+  #map #changetype-all{
+      display: none;
+  }
+  #pac-input{
+      margin-bottom: 20px;
+  }
+  #infowindow-content{
+      display : none;
+  }
+  #map #infowindow-content{
+      display : block !important;
+  }
+  </style>
+  <style>
+    .list_doc{
+      list-style: none;
+      color: #000;
+      font-weight: 700;
+      display: list-item;
+      text-align: -webkit-match-parent;
+      padding:10px;
+    }
+    .list-item{
+      padding:10px;
+  
+    }
+    .file{
+      color:red;
+    }
+  </style>
+  <!--AIzaSyCqNJbAT-IfYuWjqMieVB0w_KKy3DNUh0k-->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDG9U_oANZ_j5SRL0KFurNGUJXszEICMn8&callback=initMap&libraries=places&v=weekly" defer></script>
+  <script>
+  // This example requires the Places library. Include the libraries=places
+  // parameter when you first load the API. For example:
+  // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+  let marker;
+  let map;
+  let latlng;
+  let infowindow;
+  function initMap() {
+      var lat;
+      var lng;
+      const myLatLng = { lat: -33.8688, lng: 151.2195 };
+      map = new google.maps.Map(document.getElementById("map"), {
+          center: myLatLng,
+          zoom: 13,
+      });
+  
+      marker = new google.maps.Marker({
+          position: myLatLng,
+          map: map,
+          draggable: true
+      });
+  
+      infowindow = new google.maps.InfoWindow();
+  
+      // Try HTML5 geolocation.
+      if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(
+              (position) => {
+                  var lat = position.coords.latitude;
+                  var lng = position.coords.longitude;
+                  var latLngval = { lat: lat, lng: lng };
+  
+                  var latlng = new google.maps.LatLng(lat, lng);
+                  marker.setPosition(latLngval);
+                  map.setCenter(latlng);
+                  var geocoder = geocoder = new google.maps.Geocoder();
+                  geocoder.geocode({ 'latLng': latlng }, function (results, status) {
+                      if (status == google.maps.GeocoderStatus.OK) {
+                          if (results[1]) {
+                              var address = results[1].formatted_address;
+                              $('#pac-input').val(address);
+                              $('#latitude').val(lat);
+                              $('#longitude').val(lng);
+                              infowindow.close();
+                          }
+                      }
+                  });
+              },
+              () => {
+                  console.log("Error: The Geolocation service failed.");
+              }
+          );
+      } else {
+          console.log("Error: Your browser doesn't support geolocation.");
+      }
+  
+      google.maps.event.addListener(marker, 'dragend', function (event) {
+          var lat = this.getPosition().lat();
+          var lng = this.getPosition().lng();
+          var latlng = new google.maps.LatLng(lat, lng);
+          var geocoder = geocoder = new google.maps.Geocoder();
+          geocoder.geocode({ 'latLng': latlng }, function (results, status) {
+              if (status == google.maps.GeocoderStatus.OK) {
+                  if (results[1]) {
+                      var address = results[1].formatted_address;
+                      $('#pac-input').val(address);
+                      $('#latitude').val(lat);
+                      $('#longitude').val(lng);
+                      infowindow.close();
+                  }
+              }
+          });
+      });
+  
+    const card = document.getElementById("pac-card");
+    const input = document.getElementById("pac-input");
+    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
+    const autocomplete = new google.maps.places.Autocomplete(input);
+  
+    // Bind the map's bounds (viewport) property to the autocomplete object,
+    // so that the autocomplete requests use the current map bounds for the
+    // bounds option in the request.
+    autocomplete.bindTo("bounds", map);
+    // Set the data fields to return when the user selects a place.
+    autocomplete.setFields(["address_components", "geometry", "icon", "name"]);
+    
+    const infowindowContent = document.getElementById("infowindow-content");
+    infowindow.setContent(infowindowContent);
+    /*marker = new google.maps.Marker({
+      map,
+      anchorPoint: new google.maps.Point(0, -29),
+      draggable: true
+    });*/
+      autocomplete.addListener("place_changed", () => {
+          infowindow.close();
+          marker.setVisible(false);
+          const place = autocomplete.getPlace();
+          if (!place.geometry) {
+          // User entered the name of a Place that was not suggested and
+          // pressed the Enter key, or the Place Details request failed.
+          window.alert("No details available for input: '" + place.name + "'");
+          return;
+          }
+  
+          // If the place has a geometry, then present it on a map.
+          if (place.geometry.viewport) {
+          map.fitBounds(place.geometry.viewport);
+          } else {
+          map.setCenter(place.geometry.location);
+          map.setZoom(17); // Why 17? Because it looks good.
+          }
+          marker.setPosition(place.geometry.location);
+          marker.setVisible(true);
+          let address = "";
+  
+          if (place.address_components) {
+          address = [
+              (place.address_components[0] &&
+              place.address_components[0].short_name) ||
+              "",
+              (place.address_components[1] &&
+              place.address_components[1].short_name) ||
+              "",
+              (place.address_components[2] &&
+              place.address_components[2].short_name) ||
+              "",
+          ].join(" ");
+          }
+          infowindowContent.children["place-icon"].src = place.icon;
+          infowindowContent.children["place-name"].textContent = place.name;
+          infowindowContent.children["place-address"].textContent = address;
+          $('#latitude').val(marker.getPosition().lat());
+          $('#longitude').val(marker.getPosition().lng());
+          infowindow.open(map, marker);
+      });
+  }
+  
+  function placeMarker(location) {
+    if (!marker || !marker.setPosition) {
+      marker = new google.maps.Marker({
+        draggable: true,   
+        position: location,
+        map: map,
+      });
+    } else {
+      marker.setPosition(location);
+    }
+  }
+  
+  </script>
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6"> 
+            <h1>Dashboard</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="/auth/admin-dashboard/">Home</a></li>
+              <li class="breadcrumb-item active"><a href="/auth/driver-management/">Driver List</a></li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card card-danger">
+              <div class="card-header">
+                <h3 class="card-title">Edit New Driver</h3>
+            <form enctype="multipart/form-data" method="POST" class="uform">
+              </div>
+                <div class="card-body">
+                
+                {% csrf_token %}
+                    <input type="hidden" name="csrfmiddlewaretoken" value="">
+                    
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Name :</label>
+                    <input type="text" class="form-control" id="name" placeholder="Name.*" value="{{list.name}}">
+                    <span class="text-danger font-weight-bold" id="name-err"></span>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Name (ar) :</label>
+                    <input type="text" class="form-control arabic-input" id="name_ar" value="{{list.name_ar}}" placeholder="Name (Arabic).*">
+                    <span class="text-danger font-weight-bold" id="name_ar-err"></span>
+                  </div>
+                  <div class="form-group d-none">
+                    <label for="exampleInputEmail1">Email :</label>
+                    <input type="text" class="form-control" id="email" placeholder="Email.*"  value="{{list.email}}">
+                    <span class="text-danger font-weight-bold" id="email-err"></span>
+                  </div>
+                  <div class="form-group d-none">
+                    <label for="exampleInputEmail1">Data of Birth :</label>
+                    <input type="date" class="form-control" id="dob" placeholder="Date of Birth.*" value="{{list.date_of_birth|date:"Y-m-d"}}">
+                    <span class="text-danger font-weight-bold" id="dob-err"></span>
+                  </div>
+                  <div class="form-group d-none">
+                    <label for="exampleInputEmail1">Country Code :</label>
+                    <input type="numtextber" class="form-control" id="country_code" value="+965" placeholder="Country Code.*">
+                    <span class="text-danger font-weight-bold" id="country_code-err"></span>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Phone :</label>
+                    <input type="number" class="form-control" id="phone" placeholder="Phone.*" maxlength="8"  value="{{list.mobile_number}}">
+                    <span class="text-danger font-weight-bold" id="phone-err"></span>
+                  </div>
+                  <div class="form-group d-none">
+                    <label for="exampleInputEmail1">Password :</label>
+                    <input type="text" class="form-control" id="password" placeholder="Password.*"  value="{{list.password}}"></textarea>
+                    <span class="text-danger font-weight-bold" id="password-err"></span>
+                  </div>
+                  <div class="form-group d-none">
+                    <label for="exampleInputEmail1">Address :</label>
+                    <input type="text" class="form-control" id="address" placeholder="Enter Address.*" value="{{list.address}}">
+                    <span class="text-danger font-weight-bold" id="address-err"></span>
+                  </div>
+                  <div class="form-group m-0 col-md-12 d-none">
+                    <label for="postName">Address:</label>
+                    <input  type="text" id="pac-input" name="pac-input" class="form-control" value="{{list.address}}">
+                    <span class="text-danger font-weight-bold" id="name-err"></span>
+                    
+                      <div class="pac-card d-none" id="pac-card">
+                          <div>
+                              <div id="type-selector" class="pac-controls">
+                                  <input type="radio" name="type" id="changetype-all" checked="checked" />
+                              </div>
+                          </div>
+                          <div id="pac-container">
+                              <!--<input id="pac-input" type="text" placeholder="Enter a location" />-->
+                          </div>
+                      </div>
+                      <div id="map" class="d-none" style="position: sticky;overflow: hidden;"></div>
+                      <input type="hidden" id="latitude" name="latitude" placeholder="Latitude"/>
+                      <input type="hidden" id="longitude" name="longitude" placeholder="Longitude"/>
+                      <div id="infowindow-content" class="d-none">
+                          <img src="" width="16" height="16" id="place-icon" />
+                          <span id="place-name" class="title"></span><br />
+                          <span id="place-address"></span>
+                      </div>
+                  </div>
+                  <div class="form-group d-none">
+                    <label for="exampleInputEmail1">Address (ar) :</label>
+                    <input type="text" class="form-control arabic-input" value="{{list.address_ar}}" id="address_ar" placeholder="Address (Arabic).*">
+                    <span class="text-danger font-weight-bold" id="address_ar-err"></span>
+                  </div>
+                  
+                  <div class="form-group d-none">
+                    <label for="exampleInputEmail1">City :</label>
+                    <input type="text" class="form-control" id="city" placeholder="Enter City.*" value="{{list.city}}">
+                    <span class="text-danger font-weight-bold" id="city-err"></span>
+                  </div>
+                  <div class="form-group d-none">
+                    <label for="exampleInputEmail1">City (ar) :</label>
+                    <input type="text" class="form-control arabic-input" id="city_ar" value="{{list.city_ar}}" placeholder="Enter City (Arabic).*">
+                    <span class="text-danger font-weight-bold" id="city_ar-err"></span>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Civil Id :</label>
+                    <input type="text" class="form-control" id="civil_id" value="{{list.civil_id}}" placeholder="Enter Civil ID.*">
+                    <span class="text-danger font-weight-bold" id="civil_id-err"></span>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputFile">Driving License :</label>
+                    <div class="white-box">
+                      {% if list.driving_licence %}
+                      <input type="file" id="file" name="file" class="dropify" data-default-file="{{MEDIA_URL}}{{list.driving_licence.url}}" /> 
+                      {% else %}
+                      <input type="file" id="file" name="file" class="dropify" data-default-file="/static/default.png" />
+                      {% endif %}
+                    </div>
+                    <span class="text-danger font-weight-bold" id="file-err"></span>
+                    <hr>
+                  <div class="form-group">
+                    <ul>
+                      {% if list.driving_licence %}
+                      <li class="list_doc"><i class="fas fa-file file"></i><span class="list-item"><a href="{{MEDIA_URL}}{{list.driving_licence.url}}" download>Driving License</a></span></li>
+                      {% else %}
+                      <li class="list_doc"><i class="fas fa-file file"></i><span class="list-item"> Not Uploaded</span></li>
+                      {% endif %}
+                      
+                    </ul>
+                  </div>
+                  </div>
+                  
+                </div>
+                <div class="card-footer" id="save-btn-conatiner">
+                  <button type="button" class="btn btn-danger" id="save-btn-custom">Save</button>
+                </div>
+            </div>
+            </form>
+          </div>
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  
+<script>
+    document.querySelectorAll('input[type="number"]').forEach(input=>{
+        input.oninput = () =>{
+            if(input.value.length > input.maxLength) input.value = input.value.slice(0,input.maxLength);
+        }
+    })
+</script>   
+<script>
+    $(document).ready(function() 
+    {
+        $('.dropify').dropify();
+    });
+
+    $(function () {
+        $('#description').summernote({
+          height: 200,
+        });
+        
+        $('#arpostDescription').summernote('justifyRight');
+      });
+</script>
+<script>
+    $(document).ready(function(){
+        $(document).on('click','#save-btn-custom',function(){
+          const reg_email = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
+          var name = $('#name').val();
+          var email = $('#email').val();
+          var phone = $('#phone').val();
+          var password = $('#password').val();
+          var dob = $('#dob').val();
+          var address = $('#pac-input').val();
+          var files = $('#file')[0].files[0];
+          var latitude = $('#latitude').val();
+          var longitude = $('#longitude').val();
+          var civil_id = $('#civil_id').val();
+          
+          if(name=="")
+          {
+              $('#name').addClass('is-invalid');
+              $('#name-err').text('Enter Driver Name.*').css({"color":"red","font-weight":"bold"}).fadeIn(1000).delay(3000).fadeOut("slow");
+          }else{
+              $('#name').removeClass('is-invalid');
+              $('#name-err').text('');
+          }
+          
+          if(email=="")
+          {
+              $('#email').addClass('is-invalid');
+              $('#email-err').text('Enter Email.*').css({"color":"red","font-weight":"bold"}).fadeIn(1000).delay(3000).fadeOut("slow");
+          }else if(!reg_email.test(email)){
+            $('#email').addClass('is-invalid'); 
+            $('#email-err').text('Enter valid email address.*').css({"color":"red","font-weight":"bold"}).fadeIn(1000).delay(3000).fadeOut("slow");
+          
+          }else{
+              $('#email').removeClass('is-invalid');
+              $('#email-err').text('');
+          }
+          if(phone=="")
+          {
+              $('#phone').addClass('is-invalid');
+              $('#phone-err').text('Enter Phone.*').css({"color":"red","font-weight":"bold"}).fadeIn(1000).delay(3000).fadeOut("slow");
+          }else if(phone.length!=8){
+              $('#phone').addClass('is-invalid');
+              $('#phone-err').text('Enter 8 Digit Phone.*').css({"color":"red","font-weight":"bold"}).fadeIn(1000).delay(3000).fadeOut("slow");
+          }else{
+              $('#phone').removeClass('is-invalid');
+              $('#phone-err').text('');
+          }
+          if(password=="")
+          {
+              $('#password').addClass('is-invalid');
+              $('#password-err').text('Enter Password.*').css({"color":"red","font-weight":"bold"}).fadeIn(1000).delay(3000).fadeOut("slow");
+          }else if(password.length < 6){
+            $('#password').addClass('is-invalid');
+            $('#password-err').text('Pasword should be greater than 6 digit.*').css({"color":"red","font-weight":"bold"}).fadeIn(1000).delay(3000).fadeOut("slow");  
+          }else{
+              $('#password').removeClass('is-invalid');
+              $('#password-err').text('');
+          }
+          if(dob=="")
+            {
+                $('#dob').addClass('is-invalid');
+                $('#dob-err').text('Enter Driver Date of Birth.*').css({"color":"red","font-weight":"bold"}).fadeIn(1000).delay(3000).fadeOut("slow");
+            }else{
+                $('#dob').removeClass('is-invalid');
+                $('#dob-err').text('');
+            }
+            if(civil_id=="")
+            {
+                $('#civil_id').addClass('is-invalid');
+                $('#civil_id-err').text('Enter Civil ID.*').css({"color":"red","font-weight":"bold"}).fadeIn(1000).delay(3000).fadeOut("slow");
+            }else{
+                $('#civil_id').removeClass('is-invalid');
+                $('#civil_id-err').text('');
+            }
+           
+            if(name!="" && phone!="" && civil_id!="" && phone.length==8)
+            {
+               
+                var fd = new FormData();
+                var files = $('#file')[0].files[0];
+                
+                fd.append('files',files);
+                fd.append('name',name);
+                fd.append('name_ar',$('#name_ar').val());
+                fd.append('email',email);
+                fd.append('country_code',$('#country_code').val());
+                fd.append('phone',phone);
+                fd.append('password',password);
+                fd.append('dob',$('#dob').val());
+                fd.append('address',address);
+                fd.append('address_ar',$('#address_ar').val());
+                fd.append('latitude',latitude)
+                fd.append('longitude',longitude)
+                fd.append('city',$('#city').val());
+                fd.append('city_ar',$('#city_ar').val());
+                fd.append('civil_id',civil_id);
+                fd.append('id',"{{list.id}}");
+                fd.append('csrfmiddlewaretoken',$('input[name="csrfmiddlewaretoken"]').val())
+                $.ajax({
+                    url: '/auth/update-driver/',
+                    method: "POST",
+                    data: fd,
+                    contentType: false,
+                    processData: false,
+                    //dataType: "JSON",
+                    beforeSend: function(){
+                    $('#title').removeClass('is-invalid');
+                    $('#title-err').text('');
+                    
+                    $("#save-btn-conatiner").html('<div class="spinner-border text-danger text-right"></div>');
+                   },
+                    success: function(data) {
+                        console.log(data)
+                      if ((data != null) && (data.msg == 'Updated')) 
+                      {
+                        sessionStorage.setItem('updated',true);
+                        window.location.href = '/auth/driver-management/';
+                      }
+                      else if((data != null) && (data.msg == 'phone already exist')) {
+                        $('#phone').addClass('is-invalid');
+                        $('#phone-err').text('Phone already Exist.*');
+                      }
+                    },complete:function(data){
+                     $("#save-btn-conatiner").html('<button type="button" class="btn btn-danger" id="save-btn-custom">Save</button>');
+                   }
+                });
+            }
+
+        })
+    })
+</script>
+
+<script>
+    $(document).ready(function() 
+    {
+        $('.dropify').dropify();
+        $('.select2').select2();
+        $('.select2bs4').select2({
+        theme: 'bootstrap4'
+        });
+    });
+</script>
+
+{% endblock content %}

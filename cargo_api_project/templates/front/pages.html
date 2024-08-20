@@ -1,0 +1,33 @@
+{% extends 'front/base.html' %}
+{% block content %}
+{% load static %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+<section>
+    <div class="signup">
+        <div class="container">
+            <div class="signup_counst">
+                <div class="signup_counst_title">
+                    <div class="hedding_signp">
+                        <center><h2>
+                            {% if LANGUAGE_CODE == "en" %}
+                            {{ list.name }}
+                            {% else %}
+                                {{ list.name_ar }}
+                            {% endif %}
+                          </h2></center>
+                          <p>
+                            {% if LANGUAGE_CODE == "en" %}
+                            {{ list.description|striptags }}
+                            {% else %}
+                                {{ list.description_ar|striptags }}
+                            {% endif %}
+                          </p>
+                    </div> 
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

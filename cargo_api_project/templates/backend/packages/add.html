@@ -1,0 +1,183 @@
+{% extends 'backend/base.html' %}
+{% block content %}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6"> 
+            <h1>Dashboard</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="/auth/admin-dashboard/">Home</a></li>
+              <li class="breadcrumb-item active"><a href="/auth/package-management/">Package  List</a></li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card card-danger">
+              <div class="card-header">
+                <h3 class="card-title">New Package</h3>
+            <form enctype="multipart/form-data" method="POST" class="uform">
+              </div>
+                <div class="card-body">
+                
+                {% csrf_token %}
+                  <input type="hidden" name="csrfmiddlewaretoken" value="">
+                 
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Size (en) :</label>
+                    <input type="text" class="form-control" id="size" placeholder="Enter Size (English).*">
+                    <span class="text-danger font-weight-bold" id="size-err"></span>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Size (ar) :</label>
+                    <input type="text" class="form-control arabic-input" id="size_ar" placeholder="Enter Size (Arabic).*">
+                    <span class="text-danger font-weight-bold" id="size_ar-err"></span>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Weight Range :</label>
+                    <input type="text" class="form-control" id="weight_range" placeholder="Enter Weight Range.*">
+                    <span class="text-danger font-weight-bold" id="weight_range-err"></span>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Order :</label>
+                    <input type="number" class="form-control" id="order" placeholder="Enter Order.*" maxlength="8">
+                    
+                    <span class="text-danger font-weight-bold" id="order-err"></span>
+                  </div>
+                  
+                </div>
+                <div class="card-footer" id="save-btn-conatiner">
+                  <button type="button" class="btn btn-danger" id="save-btn-custom">Save</button>
+                </div>
+            </div>
+            </form>
+          </div>
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+   
+<script>
+    document.querySelectorAll('input[type="number"]').forEach(input=>{
+        input.oninput = () =>{
+            if(input.value.length > input.maxLength) input.value = input.value.slice(0,input.maxLength);
+        }
+    })
+</script>   
+<script>
+    $(document).ready(function() 
+    {
+        $('.dropify').dropify();
+    });
+
+    $(function () {
+        $('#description').summernote({
+          height: 200,
+        });
+        
+        $('#arpostDescription').summernote('justifyRight');
+      });
+</script>
+<script>
+    $(document).ready(function(){
+        $(document).on('click','#save-btn-custom',function(){
+          const reg_email = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
+            var size = $('#size').val();
+            var weight_range = $('#weight_range').val();
+            var order = $('#order').val();
+           
+            if(weight_range=="")
+            {
+                $('#size').addClass('is-invalid');
+                $('#size-err').text('Enter Package Size.*').css({"color":"red","font-weight":"bold"}).fadeIn(1000).delay(3000).fadeOut("slow");
+            }else{
+                $('#size').removeClass('is-invalid');
+                $('#size-err').text('');
+            }
+            if(weight_range=="")
+            {
+                $('#weight_range').addClass('is-invalid');
+                $('#weight_range-err').text('Enter Package Weight Range.*').css({"color":"red","font-weight":"bold"}).fadeIn(1000).delay(3000).fadeOut("slow");
+            }else{
+                $('#weight_range').removeClass('is-invalid');
+                $('#weight_range-err').text('');
+            }
+            if(order=="")
+            {
+                $('#order').addClass('is-invalid');
+                $('#order-err').text('Enter Order.*').css({"color":"red","font-weight":"bold"}).fadeIn(1000).delay(3000).fadeOut("slow");
+            }else{
+                $('#order').removeClass('is-invalid');
+                $('#order-err').text('');
+            }
+           
+            
+            if(weight_range!="" && size!="" && order!="")
+            {
+                var fd = new FormData();
+                
+                fd.append('weight_range',weight_range);
+                fd.append('size',size);
+                fd.append('order',order);
+                fd.append('size_ar',$('#size_ar').val())
+                
+                fd.append('csrfmiddlewaretoken',$('input[name="csrfmiddlewaretoken"]').val())
+                $.ajax({
+                    url: '/auth/create-package/',
+                    method: "POST",
+                    data: fd,
+                    contentType: false,
+                    processData: false,
+                    //dataType: "JSON",
+                    beforeSend: function(){
+                    $('#size').removeClass('is-invalid');
+                    $('#size-err').text('');
+                    
+                    $("#save-btn-conatiner").html('<div class="spinner-border text-danger text-right"></div>');
+                   },
+                    success: function(data) {
+                        console.log(data)
+                      if ((data != null) && (data.msg == 'Added')) 
+                      {
+                        sessionStorage.setItem('saved',true);
+                        window.location.href = '/auth/package-management/';
+                      } else if((data != null) && (data.msg == 'already exist')) {
+                        $('#size').addClass('is-invalid');
+                        $('#size-err').text('Size title Already Exist.*');
+                      }
+                      
+                    },complete:function(data){
+                     $("#save-btn-conatiner").html('<button type="button" class="btn btn-danger" id="save-btn-custom">Save</button>');
+                   }
+                });
+            }
+
+        })
+    })
+</script>
+
+<script>
+    $(document).ready(function() 
+    {
+        $('.dropify').dropify();
+        $('.select2').select2();
+        $('.select2bs4').select2({
+        theme: 'bootstrap4'
+        });
+    });
+</script>
+
+{% endblock content %}
